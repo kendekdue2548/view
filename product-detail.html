@@ -3,228 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>รายละเอียดสินค้า - Nordic L-Shape Sofa</title>
+    <title>Nordic L-Shape Sofa - ME SOFA DESIGN</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary: #8D7B68;
-            --orange: #FF8C00;
-            --dark: #333;
-            --light-bg: #f9f9f9;
+            --secondary: #C8B6A6;
+            --dark: #2C2C2C;
+            --light: #FAF9F6;
+            --orange-btn: #FF8C00; /* สีส้มตามรูปตัวอย่าง */
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
-        body { background-color: #fff; color: var(--dark); }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
 
-        .product-container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 50px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* ฝั่งซ้าย: รูปภาพและ Gallery */
-        .product-gallery { display: flex; flex-direction: column; gap: 15px; }
-        .main-img-box {
-            width: 100%;
-            height: 450px;
-            background: var(--light-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .main-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        /* Header Simple */
+        .detail-header { padding: 20px 0; border-bottom: 1px solid #eee; background: white; margin-bottom: 40px; }
+        .back-btn { text-decoration: none; color: var(--primary); font-weight: 500; display: flex; align-items: center; gap: 10px; }
+
+        /* Product Layout */
+        .product-page { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow); margin-bottom: 50px; }
+
+        /* Gallery */
+        .gallery-container { display: flex; flex-direction: column; gap: 20px; }
+        .main-image { width: 100%; border-radius: 10px; overflow: hidden; background: #f5f5f5; }
+        .main-image img { width: 100%; height: auto; display: block; transition: 0.3s; }
         
-        .thumb-list { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
-        .thumb-item {
-            width: 80px; height: 80px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            overflow: hidden;
-        }
-        .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
-        .thumb-item.active { border: 2px solid var(--orange); }
+        .thumb-grid { display: flex; gap: 15px; }
+        .thumb { width: 80px; height: 80px; border-radius: 5px; cursor: pointer; border: 2px solid transparent; overflow: hidden; opacity: 0.6; transition: 0.3s; }
+        .thumb.active { border-color: var(--primary); opacity: 1; }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* ฝั่งขวา: ข้อมูล (ถอดแบบรูปที่ 2) */
-        .product-info-panel { display: flex; flex-direction: column; gap: 20px; }
-        .product-title { font-size: 1.8rem; font-weight: 600; }
-        .price-tag { font-size: 1.6rem; color: var(--dark); margin-bottom: 10px; }
-        .price-tag span { font-size: 1.2rem; font-weight: 400; }
+        /* Info Panel */
+        .info-panel { display: flex; flex-direction: column; gap: 25px; }
+        .brand-tag { color: var(--primary); font-weight: 500; letter-spacing: 1px; font-size: 0.9rem; }
+        .product-name { font-size: 2.2rem; font-weight: 600; line-height: 1.2; }
+        .price-row { display: flex; align-items: baseline; gap: 15px; }
+        .current-price { font-size: 2rem; font-weight: 600; color: var(--dark); }
+        .old-price { color: #bbb; text-decoration: line-through; font-size: 1.2rem; }
 
-        .spec-table { border-top: 1px solid #eee; padding-top: 20px; }
-        .spec-row {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            margin-bottom: 20px;
-            align-items: center;
-        }
-        .spec-label { color: #666; font-weight: 500; }
+        .divider { height: 1px; background: #eee; width: 100%; }
+
+        /* Options */
+        .option-group { display: flex; flex-direction: column; gap: 10px; }
+        .option-label { font-weight: 500; color: #666; font-size: 0.95rem; }
         
-        /* ปุ่มเลือกด้าน */
-        .side-options { display: flex; gap: 10px; }
-        .btn-side {
-            padding: 6px 20px;
-            border: 1px solid #ccc;
-            background: #fff;
-            cursor: pointer;
-            border-radius: 2px;
-        }
-        .btn-side.active { border-color: #333; font-weight: 600; }
+        .side-selector { display: flex; gap: 10px; }
+        .side-btn { padding: 10px 30px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; transition: 0.2s; font-weight: 500; }
+        .side-btn.active { border-color: var(--dark); background: var(--dark); color: white; }
 
-        /* วงกลมเลือกสี */
-        .color-list { display: flex; gap: 12px; }
-        .color-box {
-            width: 32px; height: 32px;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            transition: 0.2s;
-            position: relative;
-        }
-        .color-box.active::after {
-            content: '';
-            position: absolute;
-            top: -3px; left: -3px; right: -3px; bottom: -3px;
-            border: 2px solid #333;
-        }
+        .color-selector { display: flex; gap: 15px; }
+        .color-dot { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; border: 3px solid white; box-shadow: 0 0 0 1px #ddd; transition: 0.2s; }
+        .color-dot.active { box-shadow: 0 0 0 2px var(--dark); transform: scale(1.1); }
 
-        .action-area {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            border-top: 1px solid #eee;
-            padding-top: 30px;
-        }
-        .btn-wishlist {
-            width: 50px; height: 50px;
-            border: 1px solid #ff4d4d;
-            background: #fff;
-            color: #ff4d4d;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-        .btn-cart {
-            flex: 1;
-            background: var(--orange);
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
+        /* Actions */
+        .action-row { display: flex; gap: 15px; margin-top: 20px; }
+        .wish-btn { padding: 15px 20px; border: 1px solid #eee; background: white; border-radius: 8px; cursor: pointer; color: #ff4d4d; font-size: 1.2rem; transition: 0.2s; }
+        .wish-btn:hover { background: #fff5f5; }
+        
+        .add-cart-btn { flex: 1; padding: 15px; background: var(--orange-btn); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
+        .add-cart-btn:hover { background: #e67e00; transform: translateY(-2px); }
 
-        .shipping-badge {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: #2D5A27;
-            margin-top: 15px;
-        }
+        .trust-badges { display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: #2D5A27; margin-top: 10px; }
+        .trust-badges i { width: 20px; }
 
+        /* Mobile */
         @media (max-width: 768px) {
-            .product-container { grid-template-columns: 1fr; margin: 0; }
-            .main-img-box { height: 300px; }
+            .product-page { grid-template-columns: 1fr; padding: 20px; gap: 30px; }
+            .product-name { font-size: 1.6rem; }
+            .current-price { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="product-container">
-        <div class="product-gallery">
-            <div class="main-img-box">
-                <img id="mainImage" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800" alt="Main Sofa">
-            </div>
-            <div class="thumb-list">
-                <div class="thumb-item active" onclick="changeImg('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800', this)">
-                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150">
-                </div>
-                <div class="thumb-item" onclick="changeImg('https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?w=800', this)">
-                    <img src="https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?w=150">
-                </div>
-            </div>
+    <header class="detail-header">
+        <div class="container">
+            <a href="living-room.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> กลับไปหน้าสินค้า
+            </a>
         </div>
+    </header>
 
-        <div class="product-info-panel">
-            <h1 class="product-title">โซฟาผ้า L-SHAPE รุ่นจิม</h1>
-            
-            <div class="price-tag">
-                <span class="spec-label">ราคา</span> &nbsp; 7,590.-
-            </div>
-
-            <div class="spec-table">
-                <div class="spec-row">
-                    <span class="spec-label">รหัสสินค้า</span>
-                    <span id="productCode">JIM_SOFA_LShape</span>
+    <main class="container">
+        <div class="product-page">
+            <div class="gallery-container">
+                <div class="main-image">
+                    <img id="viewImage" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800" alt="Nordic Sofa">
                 </div>
-
-                <div class="spec-row">
-                    <span class="spec-label">ด้าน</span>
-                    <div class="side-options">
-                        <button class="btn-side active" onclick="setSide('ซ้าย', this)">ซ้าย</button>
-                        <button class="btn-side" onclick="setSide('ขวา', this)">ขวา</button>
+                <div class="thumb-grid">
+                    <div class="thumb active" onclick="updateImg('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800', this)">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150">
                     </div>
-                </div>
-
-                <div class="spec-row">
-                    <span class="spec-label">สี</span>
-                    <div class="color-list">
-                        <div class="color-box active" style="background: #2D5A27;" onclick="setColor('เขียว', this)"></div>
-                        <div class="color-box" style="background: #7D7D7D;" onclick="setColor('เทา', this)"></div>
-                        <div class="color-box" style="background: #4B3621;" onclick="setColor('น้ำตาล', this)"></div>
-                        <div class="color-box" style="background: #333;" onclick="setColor('ดำ', this)"></div>
+                    <div class="thumb" onclick="updateImg('https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?w=800', this)">
+                        <img src="https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?w=150">
                     </div>
                 </div>
             </div>
 
-            <div class="action-area">
-                <button class="btn-wishlist"><i class="far fa-heart"></i></button>
-                <button class="btn-cart" onclick="addToCart()">
-                    <i class="fas fa-shopping-cart"></i> เพิ่มไปยังรถเข็น
-                </button>
-            </div>
+            <div class="info-panel">
+                <div class="brand-info">
+                    <span class="brand-tag">LIVING ROOM COLLECTION</span>
+                    <h1 class="product-name">โซฟาผ้า L-SHAPE รุ่น Nordic จิม</h1>
+                </div>
 
-            <div class="shipping-badge">
-                <i class="fas fa-shipping-fast"></i> จัดส่งพร้อมติดตั้งฟรี
+                <div class="price-row">
+                    <span class="current-price">฿12,900</span>
+                    <span class="old-price">฿18,500</span>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="option-group">
+                    <span class="option-label">เลือกด้าน L-Shape:</span>
+                    <div class="side-selector">
+                        <button class="side-btn active" onclick="selectSide('ซ้าย', this)">ซ้าย</button>
+                        <button class="side-btn" onclick="selectSide('ขวา', this)">ขวา</button>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <span class="option-label">เลือกสีผ้า:</span>
+                    <div class="color-selector">
+                        <div class="color-dot active" style="background: #2D5A27;" onclick="selectColor('เขียว', this)" title="เขียวมรกต"></div>
+                        <div class="color-dot" style="background: #7D7D7D;" onclick="selectColor('เทา', this)" title="เทา"></div>
+                        <div class="color-dot" style="background: #4B3621;" onclick="selectColor('น้ำตาล', this)" title="น้ำตาล"></div>
+                        <div class="color-dot" style="background: #333;" onclick="selectColor('ดำ', this)" title="ดำ"></div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="action-row">
+                    <button class="wish-btn"><i class="far fa-heart"></i></button>
+                    <button class="add-cart-btn" onclick="confirmOrder()">
+                        <i class="fas fa-shopping-cart"></i> เพิ่มไปยังรถเข็น
+                    </button>
+                </div>
+
+                <div class="trust-badges">
+                    <p><i class="fas fa-check-circle"></i> สินค้าสั่งทำพิเศษ (Custom Made)</p>
+                    <p><i class="fas fa-truck"></i> จัดส่งและติดตั้งฟรี กทม. และปริมณฑล</p>
+                    <p><i class="fas fa-shield-alt"></i> รับประกันโครงสร้าง 1 ปี</p>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script>
-        let selectedSide = 'ซ้าย';
-        let selectedColor = 'เขียว';
+        let choice = { side: 'ซ้าย', color: 'เขียว' };
 
-        function changeImg(url, el) {
-            document.getElementById('mainImage').src = url;
-            document.querySelectorAll('.thumb-item').forEach(item => item.classList.remove('active'));
+        function updateImg(url, el) {
+            document.getElementById('viewImage').src = url;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
         }
 
-        function setSide(side, el) {
-            selectedSide = side;
-            document.querySelectorAll('.btn-side').forEach(btn => btn.classList.remove('active'));
+        function selectSide(val, el) {
+            choice.side = val;
+            document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
         }
 
-        function setColor(color, el) {
-            selectedColor = color;
-            document.querySelectorAll('.color-box').forEach(box => box.classList.remove('active'));
+        function selectColor(val, el) {
+            choice.color = val;
+            document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
             el.classList.add('active');
         }
 
-        function addToCart() {
-            alert(`เพิ่มลงตะกร้าแล้ว!\nสินค้า: โซฟารุ่นจิม\nด้าน: ${selectedSide}\nสี: ${selectedColor}`);
+        function confirmOrder() {
+            alert(`เลือกสินค้าเรียบร้อย!\nด้าน: ${choice.side}\nสี: ${choice.color}\nราคา: ฿12,900`);
         }
     </script>
 </body>
