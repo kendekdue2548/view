@@ -20,11 +20,9 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* Header & Nav */
         .detail-header { padding: 20px 0; background: white; border-bottom: 1px solid #eee; margin-bottom: 30px; }
         .back-btn { text-decoration: none; color: var(--primary); font-weight: 500; display: flex; align-items: center; gap: 10px; }
 
-        /* Product Card */
         .product-page { 
             display: grid; 
             grid-template-columns: 1.2fr 1fr; 
@@ -35,23 +33,19 @@
             box-shadow: var(--shadow);
         }
 
-        /* Gallery - ปรับปรุงให้นิ่งและสวยงาม */
         .main-image { width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
         .main-image img { width: 100%; height: auto; display: block; }
         
+        /* Thumbnail Gallery - เหลือแค่รูปเดียว */
         .thumb-grid { display: flex; gap: 10px; }
         .thumb { 
             width: 70px; height: 70px; 
             border-radius: 5px; 
-            cursor: pointer; 
-            border: 2px solid transparent; 
+            border: 2px solid var(--primary); 
             overflow: hidden; 
-            transition: 0.3s; 
         }
-        .thumb.active { border-color: var(--primary); }
         .thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Info */
         .info-panel { display: flex; flex-direction: column; gap: 20px; }
         .product-name { font-size: 2rem; font-weight: 600; }
         .price-row { display: flex; align-items: baseline; gap: 15px; margin: 10px 0; }
@@ -64,7 +58,11 @@
         .side-btn { padding: 8px 25px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 4px; }
         .side-btn.active { border-color: var(--dark); background: var(--dark); color: white; }
 
-        /* Actions */
+        /* Color Selector - กลับมาครบทุกสี */
+        .color-selector { display: flex; gap: 12px; }
+        .color-dot { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px #ddd; cursor: pointer; transition: 0.2s; }
+        .color-dot.active { box-shadow: 0 0 0 2px var(--dark); transform: scale(1.1); }
+
         .action-row { display: flex; gap: 15px; margin-top: 15px; }
         .add-cart-btn { 
             flex: 1; padding: 15px; 
@@ -98,11 +96,8 @@
                     <img id="viewImage" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800" alt="Nordic Green Sofa">
                 </div>
                 <div class="thumb-grid">
-                    <div class="thumb active" onclick="updateImg('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800', this)">
+                    <div class="thumb">
                         <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150">
-                    </div>
-                    <div class="thumb" onclick="updateImg('https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?w=800', this)">
-                        <img src="https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?w=150">
                     </div>
                 </div>
             </div>
@@ -110,7 +105,7 @@
             <div class="info-panel">
                 <div>
                     <span style="color: var(--primary); font-size: 0.8rem; letter-spacing: 1px;">LIVING ROOM COLLECTION</span>
-                    <h1 class="product-name">โซฟาผ้า L-SHAPE รุ่น Nordic จิม - สีเขียว</h1>
+                    <h1 class="product-name">โซฟาผ้า L-SHAPE รุ่น Nordic จิม</h1>
                 </div>
 
                 <div class="price-row">
@@ -129,36 +124,37 @@
                 </div>
 
                 <div class="option-group">
-                    <span class="option-label">สีที่เลือก:</span>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <div style="width: 30px; height: 30px; border-radius: 50%; background: #2D5A27; border: 2px solid #ddd;"></div>
-                        <span style="font-size: 0.9rem;">เขียวมรกต (Green Velvet)</span>
+                    <span class="option-label">เลือกสีผ้า:</span>
+                    <div class="color-selector">
+                        <div class="color-dot active" style="background: #2D5A27;" onclick="selectColor('เขียว', this)" title="เขียว"></div>
+                        <div class="color-dot" style="background: #7D7D7D;" onclick="selectColor('เทา', this)" title="เทา"></div>
+                        <div class="color-dot" style="background: #4B3621;" onclick="selectColor('น้ำตาล', this)" title="น้ำตาล"></div>
+                        <div class="color-dot" style="background: #333;" onclick="selectColor('ดำ', this)" title="ดำ"></div>
                     </div>
                 </div>
 
                 <div class="action-row">
-                    <button class="add-cart-btn" onclick="alert('เพิ่มโซฟาสีเขียวลงรถเข็นแล้ว')">
+                    <button class="add-cart-btn">
                         <i class="fas fa-shopping-cart"></i> เพิ่มไปยังรถเข็น
                     </button>
                 </div>
 
                 <div class="trust-badges">
-                    <p><i class="fas fa-check-circle"></i> สินค้าสั่งทำพิเศษเฉพาะสีเขียว</p>
-                    <p><i class="fas fa-truck"></i> ส่งฟรีพร้อมติดตั้ง กทม./ปริมณฑล</p>
+                    <p><i class="fas fa-check-circle"></i> สินค้าสั่งทำพิเศษ (Custom Made)</p>
+                    <p><i class="fas fa-truck"></i> จัดส่งและติดตั้งฟรี กทม. และปริมณฑล</p>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
-        function updateImg(url, el) {
-            document.getElementById('viewImage').src = url;
-            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+        function setSide(side, el) {
+            document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
         }
 
-        function setSide(side, el) {
-            document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
+        function selectColor(color, el) {
+            document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
             el.classList.add('active');
         }
     </script>
