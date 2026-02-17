@@ -8,42 +8,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* จัดเลย์เอาท์หน้า Collection ใหม่ให้มินิมอล */
-        .collection-banner {
-            text-align: center;
-            padding: 50px 0 30px;
-            background-color: #FAF9F6;
+        /* เน้นโครงสร้างกรอบสีขาวให้เหมือนหน้าหลัก */
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* กรอบเงาจางๆ */
+            margin-bottom: 50px;
         }
-        
-        /* ปรับ Breadcrumb ให้เหลือแค่รูปบ้านตามที่ต้องการ */
-        .home-nav {
-            font-size: 1.2rem;
+
+        .breadcrumb-nav {
+            display: flex;
+            justify-content: center;
+            padding: 30px 0;
+        }
+
+        .home-icon-btn {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #8D7B68;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             text-decoration: none;
-            display: inline-block;
-            margin-bottom: 15px;
             transition: 0.3s;
         }
-        .home-nav:hover {
+
+        .home-icon-btn:hover {
+            transform: translateY(-3px);
             color: #2C2C2C;
-            transform: scale(1.1);
         }
 
-        .collection-title {
+        .category-title-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .category-title-section h1 {
             font-size: 2rem;
             letter-spacing: 2px;
-            color: #2C2C2C;
             text-transform: uppercase;
+            color: #2C2C2C;
         }
 
-        .living-content {
-            padding: 50px 0;
+        .product-display-area {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            justify-items: center;
         }
 
-        /* ปรับขนาดการ์ดสินค้าในหน้านี้ให้ดูพรีเมียม */
-        .single-product-wrap {
-            max-width: 350px;
-            margin: 0 auto;
+        /* ปรับขนาด Card สินค้าให้พอดีกับกรอบใหม่ */
+        .product-item-wrap {
+            width: 100%;
+            max-width: 320px;
         }
     </style>
 </head>
@@ -60,36 +81,39 @@
         </div>
     </header>
 
-    <div class="collection-banner">
-        <div class="container">
-            <a href="index.html" class="home-nav" title="กลับหน้าหลัก">
+    <div class="container">
+        <nav class="breadcrumb-nav">
+            <a href="index.html" class="home-icon-btn">
                 <i class="fas fa-home"></i>
-            </div>
-            <h1 class="collection-title">Living Room</h1>
-            <div class="line" style="margin: 15px auto 0; width: 40px; height: 2px; background: #8D7B68;"></div>
-        </div>
-    </div>
+            </a>
+        </nav>
 
-    <div class="container living-content">
-        <section class="product-grid">
-            <div class="single-product-wrap">
-                <div class="product-card" onclick="location.href='product-detail.html'">
-                    <div class="p-img">
-                        <span class="badge sale">-30%</span>
-                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop" alt="Nordic Sofa">
-                        <button class="btn-add">ดูรายละเอียด</button>
-                    </div>
-                    <div class="p-info" style="text-align: center;">
-                        <div class="p-cat">LIVING ROOM</div>
-                        <h3>Nordic L-Shape Sofa</h3>
-                        <div class="p-price">
-                            <span>฿12,900</span>
-                            <del>฿18,500</del>
+        <main class="content-card">
+            <div class="category-title-section">
+                <h1>Living Room</h1>
+                <div class="line" style="margin: 15px auto 0; width: 50px; height: 2px; background: #8D7B68;"></div>
+            </div>
+
+            <div class="product-display-area">
+                <div class="product-item-wrap">
+                    <div class="product-card" onclick="location.href='product-detail.html'">
+                        <div class="p-img">
+                            <span class="badge sale">-30%</span>
+                            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop" alt="Nordic Sofa">
+                            <button class="btn-add">ดูรายละเอียด</button>
+                        </div>
+                        <div class="p-info" style="text-align: center;">
+                            <div class="p-cat">LIVING ROOM</div>
+                            <h3>Nordic L-Shape Sofa</h3>
+                            <div class="p-price">
+                                <span>฿12,900</span>
+                                <del>฿18,500</del>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+                </div>
+        </main>
     </div>
 
     <div class="floating-container" id="masterBtn" onclick="toggleLineBubble(event)">
@@ -107,7 +131,7 @@
     </div>
 
     <script>
-        // Script ปุ่มติดต่อ
+        // ระบบปุ่มติดต่อ
         let bubbleTimer = null;
         function toggleLineBubble(event) {
             if (event.target.closest('.line-bubble')) return;
