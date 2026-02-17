@@ -3,40 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Living Room - ME SOFA</title>
+    <title>Living Room Collection - ME SOFA</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> </head>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ปรับแต่งพิเศษสำหรับหน้า Collection */
+        .collection-header {
+            text-align: center;
+            padding: 60px 0 40px;
+            background-color: #FAF9F6;
+        }
+        .collection-header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            color: #2C2C2C;
+            margin-bottom: 15px;
+        }
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #8D7B68;
+            margin-bottom: 20px;
+        }
+        .product-filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 40px;
+        }
+        .item-count { color: #999; font-size: 0.9rem; }
+        
+        /* ปรับขนาด Card ให้เด่นขึ้น */
+        .living-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
 <body>
 
     <header class="main-header">
         <div class="container header-content">
-            <div class="logo" onclick="location.href='index.html'" style="cursor:pointer;"><h2>ME SOFA.</h2></div>
+            <div class="logo" onclick="location.href='index.html'" style="cursor:pointer;">
+                <h2>ME SOFA.</h2>
+            </div>
             <div class="user-actions">
                 <a href="index.html" class="icon-link"><i class="fas fa-home"></i> กลับหน้าหลัก</a>
             </div>
         </div>
     </header>
 
+    <div class="collection-header">
+        <div class="container">
+            <div class="breadcrumb">หน้าหลัก / Living Room</div>
+            <h1>LIVING ROOM COLLECTION</h1>
+            <div class="line" style="margin: 0 auto; width: 60px; height: 3px; background: #8D7B68;"></div>
+        </div>
+    </div>
+
     <div class="container">
-        <div class="section-title">
-            <h3>LIVING ROOM COLLECTION</h3>
-            <div class="line"></div>
+        <div class="product-filter-bar">
+            <div class="item-count">แสดงผล 1 รายการ</div>
+            <div class="sort-options" style="color: #666; cursor: pointer;">
+                เรียงลำดับ: ล่าสุด <i class="fas fa-chevron-down"></i>
+            </div>
         </div>
 
-        <section class="product-grid">
+        <section class="living-grid">
             <div class="product-card" onclick="location.href='product-detail.html'">
-                <div class="p-img">
-                    <span class="badge sale">-30%</span>
-                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=500&auto=format&fit=crop">
-                    <button class="btn-add"><i class="fas fa-plus"></i> ดูรายละเอียด</button>
+                <div class="p-img" style="height: 350px;">
+                    <span class="badge sale" style="background: #D32F2F;">-30%</span>
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop" alt="Nordic Sofa">
+                    <button class="btn-add" style="background: #2C2C2C; color: white; border: none; padding: 15px; width: 100%; position: absolute; bottom: 0; opacity: 0.9;">
+                        <i class="fas fa-search-plus"></i> ดูรายละเอียดสินค้า
+                    </button>
                 </div>
-                <div class="p-info">
-                    <div class="p-cat">Living Room</div>
-                    <h3>Nordic L-Shape Sofa</h3>
-                    <div class="p-price">
-                        <span>฿12,900</span>
-                        <del>฿18,500</del>
+                <div class="p-info" style="text-align: center; padding: 25px;">
+                    <div class="p-cat" style="letter-spacing: 2px; color: #BBB; font-size: 0.8rem; margin-bottom: 10px;">LIVING ROOM</div>
+                    <h3 style="font-size: 1.4rem; font-weight: 500; margin-bottom: 15px;">Nordic L-Shape Sofa</h3>
+                    <div class="p-price" style="display: flex; justify-content: center; gap: 15px; align-items: baseline;">
+                        <span style="font-size: 1.5rem; color: #8D7B68; font-weight: 600;">฿12,900</span>
+                        <del style="color: #CCC; font-size: 1rem;">฿18,500</del>
                     </div>
                 </div>
             </div>
@@ -44,14 +95,21 @@
     </div>
 
     <div class="floating-container" id="masterBtn" onclick="toggleLineBubble(event)">
-        <a href="#" class="line-bubble" id="lineBubble">@ LINE</a>
+        <a href="https://line.me/ti/p/ใส่IDLineของคุณตรงนี้" target="_blank" class="line-bubble" id="lineBubble">
+            <span class="at-symbol">@</span> LINE
+        </a>
         <div class="main-contact-btn">
-            <div class="red-badge"><span>ติดต่อ</span><span>สอบถาม</span></div>
-            <div class="icon-circle"><i class="fas fa-comment-dots"></i></div>
+            <div class="red-badge">
+                <span>ติดต่อ</span><span>สอบถาม</span>
+            </div>
+            <div class="icon-circle">
+                <i class="fas fa-comment-dots"></i>
+            </div>
         </div>
     </div>
 
     <script>
+        // ระบบปุ่มติดต่อเดิม
         let bubbleTimer = null;
         function toggleLineBubble(event) {
             if (event.target.closest('.line-bubble')) return;
@@ -62,6 +120,7 @@
                 if (bubbleTimer) clearTimeout(bubbleTimer);
             } else {
                 bubble.classList.add('show-bubble');
+                if (bubbleTimer) clearTimeout(bubbleTimer);
                 bubbleTimer = setTimeout(() => { bubble.classList.remove('show-bubble'); }, 120000);
             }
         }
