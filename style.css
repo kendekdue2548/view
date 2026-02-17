@@ -313,7 +313,7 @@ body {
 
 
 /* ======================================================= */
-/* MOBILE RESPONSIVE (Header จัดใหม่ตามที่คุยไว้) */
+/* MOBILE RESPONSIVE (แก้ไขส่วนหมวดหมู่ให้เรียงแถวเดียว) */
 /* ======================================================= */
 
 @media (max-width: 768px) {
@@ -339,15 +339,32 @@ body {
     .service-item { flex-direction: column; border: none; border-bottom: 1px solid #eee; padding-bottom: 15px; }
     .service-item:last-child { border-bottom: none; }
     
-    /* Categories Scroll */
-    .category-icons { 
-        justify-content: flex-start; 
-        overflow-x: auto; 
-        padding-bottom: 20px; 
-        gap: 20px;
+    /* --- แก้ไข Category Scroll (ให้เรียงแถวเดียว) --- */
+    .category-icons {
+        display: flex;
+        justify-content: flex-start; /* เริ่มจากซ้าย */
+        flex-wrap: nowrap;           /* ห้ามขึ้นบรรทัดใหม่ */
+        overflow-x: auto;            /* ให้เลื่อนซ้ายขวาได้ */
+        padding-bottom: 20px;
+        gap: 15px;
+        -ms-overflow-style: none;    /* ซ่อน scrollbar IE/Edge */
+        scrollbar-width: none;       /* ซ่อน scrollbar Firefox */
     }
-    .icon-item { min-width: 80px; }
-    .img-circle { width: 70px; height: 70px; }
+    
+    /* ซ่อน Scrollbar Chrome/Safari */
+    .category-icons::-webkit-scrollbar { display: none; }
+
+    .icon-item {
+        flex: 0 0 auto;              /* ห้ามย่อห้ามขยาย */
+        width: 80px;                 /* ความกว้างแต่ละไอคอน */
+        text-align: center;
+    }
+    
+    .img-circle {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto 10px;
+    }
 
     /* Flash Sale */
     .flash-sale-banner { flex-direction: column; text-align: center; gap: 15px; }
