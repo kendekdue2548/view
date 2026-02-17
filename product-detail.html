@@ -20,9 +20,11 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
+        /* Header */
         .detail-header { padding: 20px 0; background: white; border-bottom: 1px solid #eee; margin-bottom: 30px; }
         .back-btn { text-decoration: none; color: var(--primary); font-weight: 500; display: flex; align-items: center; gap: 10px; }
 
+        /* Product Layout */
         .product-page { 
             display: grid; 
             grid-template-columns: 1.2fr 1fr; 
@@ -33,86 +35,69 @@
             box-shadow: var(--shadow);
         }
 
-        /* --- ส่วนที่แก้ไข: โครงสร้างสำหรับเปลี่ยนสี Real-time --- */
-        .gallery-container {
-            position: relative;
-        }
-
-        .sofa-viewer {
+        /* --- เทคนิค Real-time Color Changer --- */
+        .visualizer-container {
             position: relative;
             width: 100%;
-            background-color: #f5f5f5; /* พื้นหลังจำลองห้อง */
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            aspect-ratio: 4/3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: #fff;
         }
 
-        /* เลเยอร์สีที่จะเปลี่ยน (อยู่หลังรูปโซฟา) */
-        #colorLayer {
+        /* 1. รูปพื้นหลังห้องจริง */
+        .base-room {
+            width: 100%;
+            display: block;
+        }
+
+        /* 2. เลเยอร์สีที่จะเปลี่ยน (ทับเฉพาะตัวโซฟา) */
+        #sofaTint {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #2D5A27; /* สีเริ่มต้น */
-            transition: background-color 0.5s ease;
-        }
+            background-color: transparent; /* เริ่มต้นด้วยสีเดิมของรูป */
+            
+            /* ใช้รูป PNG โปร่งใสของคุณทำหน้ากาก (Mask) */
+            -webkit-mask-image: url('photo-1555041469-a586c61ea9bc-Photoroom.png');
+            mask-image: url('photo-1555041469-a586c61ea9bc-Photoroom.png');
+            -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
 
-        /* รูปโซฟา PNG โปร่งใส */
-        #sofaImage {
-            position: relative;
-            width: 90%;
-            height: auto;
+            /* ผสมสีให้เนียนเข้ากับแสงเงา */
+            mix-blend-mode: multiply; 
+            transition: background-color 0.4s ease;
+            pointer-events: none;
             z-index: 2;
-            mix-blend-mode: multiply; /* เทคนิคผสมสีให้เข้ากับแสงเงา */
-            filter: brightness(1.1) contrast(1.1);
         }
 
         .thumb-grid { display: flex; gap: 10px; margin-top: 15px; }
-        .thumb { 
-            width: 70px; height: 70px; 
-            border-radius: 5px; 
-            border: 2px solid var(--primary); 
-            overflow: hidden; 
-        }
+        .thumb { width: 70px; height: 70px; border-radius: 5px; border: 2px solid var(--primary); overflow: hidden; }
         .thumb img { width: 100%; height: 100%; object-fit: cover; }
-        /* ------------------------------------------- */
 
+        /* Info Panel */
         .info-panel { display: flex; flex-direction: column; gap: 20px; }
         .product-name { font-size: 2rem; font-weight: 600; }
         .price-row { display: flex; align-items: baseline; gap: 15px; margin: 10px 0; }
-        .current-price { font-size: 1.8rem; font-weight: 600; color: var(--dark); }
+        .current-price { font-size: 1.8rem; font-weight: 600; }
         .old-price { color: #bbb; text-decoration: line-through; }
 
         .option-label { font-weight: 500; color: #666; margin-bottom: 8px; display: block; }
-        
         .side-selector { display: flex; gap: 10px; }
         .side-btn { padding: 8px 25px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 4px; }
         .side-btn.active { border-color: var(--dark); background: var(--dark); color: white; }
 
         .color-selector { display: flex; gap: 12px; }
-        .color-dot { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px #ddd; cursor: pointer; transition: 0.2s; }
+        .color-dot { width: 35px; height: 35px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px #ddd; cursor: pointer; transition: 0.2s; }
         .color-dot.active { box-shadow: 0 0 0 2px var(--dark); transform: scale(1.1); }
 
         .action-row { display: flex; gap: 15px; margin-top: 15px; }
-        .add-cart-btn { 
-            flex: 1; padding: 15px; 
-            background: var(--orange-btn); 
-            color: white; border: none; 
-            border-radius: 6px; font-weight: 600; 
-            cursor: pointer; display: flex; 
-            align-items: center; justify-content: center; gap: 10px; 
-        }
+        .add-cart-btn { flex: 1; padding: 15px; background: var(--orange-btn); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
-        .trust-badges { font-size: 0.9rem; color: #2D5A27; margin-top: 15px; }
-        .trust-badges p { margin-bottom: 8px; }
-
-        @media (max-width: 768px) {
-            .product-page { grid-template-columns: 1fr; padding: 20px; }
-        }
+        @media (max-width: 768px) { .product-page { grid-template-columns: 1fr; padding: 20px; } }
     </style>
 </head>
 <body>
@@ -125,17 +110,17 @@
 
     <main class="container">
         <div class="product-page">
-            <div class="gallery-container">
-                <div class="sofa-viewer">
-                    <div id="colorLayer"></div>
-                    <img id="sofaImage" src="photo-1555041469-a586c61ea9bc-Photoroom.png" alt="Sofa Preview">
+            <div class="gallery-side">
+                <div class="visualizer-container">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800" class="base-room">
+                    
+                    <div id="sofaTint"></div>
                 </div>
+                
                 <div class="thumb-grid">
-                    <div class="thumb">
-                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150">
-                    </div>
+                    <div class="thumb"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150"></div>
                 </div>
-                <p style="font-size: 0.75rem; color: #999; margin-top: 10px; text-align: center;">*ภาพจำลองสีผ้าแบบ Real-time</p>
+                <p style="font-size: 0.8rem; color: #999; margin-top: 10px; text-align: center;">*คลิกที่ปุ่มสีเพื่อทดลองเปลี่ยนสีผ้าโซฟาแบบ Real-time</p>
             </div>
 
             <div class="info-panel">
@@ -149,8 +134,6 @@
                     <span class="old-price">฿18,500</span>
                 </div>
 
-                <div style="height: 1px; background: #eee; margin: 10px 0;"></div>
-
                 <div class="option-group">
                     <span class="option-label">เลือกด้าน L-Shape:</span>
                     <div class="side-selector">
@@ -160,9 +143,9 @@
                 </div>
 
                 <div class="option-group">
-                    <span class="option-label">เลือกสีผ้า:</span>
+                    <span class="option-label">เลือกสีผ้าที่ชอบ:</span>
                     <div class="color-selector">
-                        <div class="color-dot active" style="background: #2D5A27;" onclick="selectColor('#2D5A27', this)" title="เขียว"></div>
+                        <div class="color-dot active" style="background: #2D5A27;" onclick="selectColor('#2D5A27', this)" title="เขียวเดิม"></div>
                         <div class="color-dot" style="background: #7D7D7D;" onclick="selectColor('#7D7D7D', this)" title="เทา"></div>
                         <div class="color-dot" style="background: #4B3621;" onclick="selectColor('#4B3621', this)" title="น้ำตาล"></div>
                         <div class="color-dot" style="background: #333333;" onclick="selectColor('#333333', this)" title="ดำ"></div>
@@ -171,42 +154,38 @@
                 </div>
 
                 <div class="action-row">
-                    <button class="add-cart-btn">
-                        <i class="fas fa-shopping-cart"></i> เพิ่มไปยังรถเข็น
-                    </button>
+                    <button class="add-cart-btn"><i class="fas fa-shopping-cart"></i> เพิ่มไปยังรถเข็น</button>
                 </div>
 
-                <div class="trust-badges">
+                <div style="font-size: 0.9rem; color: #2D5A27; margin-top: 10px;">
                     <p><i class="fas fa-check-circle"></i> สินค้าสั่งทำพิเศษ (Custom Made)</p>
-                    <p><i class="fas fa-truck"></i> จัดส่งและติดตั้งฟรี กทม. และปริมณฑล</p>
+                    <p><i class="fas fa-truck"></i> ส่งฟรีพร้อมติดตั้ง กทม./ปริมณฑล</p>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
+        // ฟังก์ชันเลือกด้าน
         function setSide(side, el) {
             document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
         }
 
-        // ฟังก์ชันใหม่สำหรับเปลี่ยนสี Real-time
+        // ฟังก์ชันเปลี่ยนสีโซฟา Real-time
         function selectColor(colorCode, el) {
-            // 1. เปลี่ยนสีพื้นหลังใต้รูปโซฟา
-            const layer = document.getElementById('colorLayer');
-            layer.style.backgroundColor = colorCode;
+            const tint = document.getElementById('sofaTint');
+            
+            // ถ้าเลือกสีเขียว (สีเดิม) ให้เป็นใสเพื่อให้เห็นรูปจริงที่สวยที่สุด
+            if(colorCode === '#2D5A27') {
+                tint.style.backgroundColor = 'transparent';
+            } else {
+                tint.style.backgroundColor = colorCode;
+            }
 
-            // 2. ปรับสถานะปุ่มเลือกสี
+            // จัดการสถานะปุ่ม
             document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
             el.classList.add('active');
-
-            // 3. ปรับค่าความสว่างรูปภาพตามความมืดของสีเพื่อให้ดูเนียนขึ้น
-            const sofa = document.getElementById('sofaImage');
-            if(colorCode === '#333333') { // ถ้าเป็นสีดำ
-                sofa.style.filter = "brightness(0.85) contrast(1.2)";
-            } else {
-                sofa.style.filter = "brightness(1.1) contrast(1.1)";
-            }
         }
     </script>
 </body>
