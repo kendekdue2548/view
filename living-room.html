@@ -8,38 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* เน้นโครงสร้างกรอบสีขาวให้เหมือนหน้าหลัก */
+        /* ปรับแต่งโครงสร้างกรอบสีขาว */
         .content-card {
             background: white;
             border-radius: 12px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* กรอบเงาจางๆ */
-            margin-bottom: 50px;
-        }
-
-        .breadcrumb-nav {
-            display: flex;
-            justify-content: center;
-            padding: 30px 0;
-        }
-
-        .home-icon-btn {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #8D7B68;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .home-icon-btn:hover {
-            transform: translateY(-3px);
-            color: #2C2C2C;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin: 40px auto 50px; /* เพิ่ม margin ด้านบนแทนส่วน nav ที่ลบไป */
+            max-width: 900px;
         }
 
         .category-title-section {
@@ -61,7 +37,6 @@
             justify-items: center;
         }
 
-        /* ปรับขนาด Card สินค้าให้พอดีกับกรอบใหม่ */
         .product-item-wrap {
             width: 100%;
             max-width: 320px;
@@ -82,12 +57,6 @@
     </header>
 
     <div class="container">
-        <nav class="breadcrumb-nav">
-            <a href="index.html" class="home-icon-btn">
-                <i class="fas fa-home"></i>
-            </a>
-        </nav>
-
         <main class="content-card">
             <div class="category-title-section">
                 <h1>Living Room</h1>
@@ -112,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </main>
     </div>
 
@@ -131,7 +100,6 @@
     </div>
 
     <script>
-        // ระบบปุ่มติดต่อ
         let bubbleTimer = null;
         function toggleLineBubble(event) {
             if (event.target.closest('.line-bubble')) return;
