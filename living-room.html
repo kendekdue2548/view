@@ -8,38 +8,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ปรับแต่งโครงสร้างกรอบสีขาว */
-        .content-card {
+        /* บังคับธีมสีให้ตรงกับหน้าแรก */
+        body { background-color: #FAF9F6; }
+
+        .collection-wrap {
+            padding: 40px 0 80px;
+        }
+
+        /* โครงสร้าง Card สีขาวเหมือนหน้าแรก */
+        .glass-card {
             background: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin: 40px auto 50px; /* เพิ่ม margin ด้านบนแทนส่วน nav ที่ลบไป */
-            max-width: 900px;
-        }
-
-        .category-title-section {
+            border-radius: 15px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
             text-align: center;
-            margin-bottom: 40px;
         }
 
-        .category-title-section h1 {
-            font-size: 2rem;
+        .category-head {
+            margin-bottom: 50px;
+        }
+
+        .category-head h1 {
+            font-size: 2.2rem;
             letter-spacing: 2px;
-            text-transform: uppercase;
             color: #2C2C2C;
+            text-transform: uppercase;
+            margin-bottom: 15px;
         }
 
-        .product-display-area {
+        .title-underline {
+            width: 60px;
+            height: 3px;
+            background: #8D7B68; /* สีน้ำตาลหลัก */
+            margin: 0 auto;
+        }
+
+        /* จัดระเบียบรายการสินค้า */
+        .product-list-display {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 35px;
             justify-items: center;
         }
 
-        .product-item-wrap {
+        /* ปรับสไตล์ Card ให้เหมือนหน้าแรก 100% */
+        .item-box {
             width: 100%;
             max-width: 320px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .item-box:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ซ่อนไอคอนบ้านที่ขวางหูขวางตาออกตามที่ขอ */
+        .breadcrumb-minimal {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .back-home-link {
+            color: #8D7B68;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
     </style>
 </head>
@@ -51,39 +88,49 @@
                 <h2>ME SOFA.</h2>
             </div>
             <div class="user-actions">
-                <a href="index.html" class="icon-link"><i class="fas fa-home"></i></a>
+                <a href="index.html" class="icon-link" title="กลับหน้าหลัก"><i class="fas fa-home"></i></a>
+                <a href="#" class="icon-link"><i class="fas fa-shopping-bag"></i></a>
             </div>
         </div>
     </header>
 
-    <div class="container">
-        <main class="content-card">
-            <div class="category-title-section">
-                <h1>Living Room</h1>
-                <div class="line" style="margin: 15px auto 0; width: 50px; height: 2px; background: #8D7B68;"></div>
+    <main class="collection-wrap">
+        <div class="container">
+            
+            <div class="breadcrumb-minimal">
+                <a href="index.html" class="back-home-link">
+                    <i class="fas fa-chevron-left"></i> กลับสู่หน้าหลัก
+                </a>
             </div>
 
-            <div class="product-display-area">
-                <div class="product-item-wrap">
-                    <div class="product-card" onclick="location.href='product-detail.html'">
-                        <div class="p-img">
-                            <span class="badge sale">-30%</span>
-                            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop" alt="Nordic Sofa">
-                            <button class="btn-add">ดูรายละเอียด</button>
-                        </div>
-                        <div class="p-info" style="text-align: center;">
-                            <div class="p-cat">LIVING ROOM</div>
-                            <h3>Nordic L-Shape Sofa</h3>
-                            <div class="p-price">
-                                <span>฿12,900</span>
-                                <del>฿18,500</del>
+            <div class="glass-card">
+                <div class="category-head">
+                    <h1>Living Room</h1>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="product-list-display">
+                    <div class="item-box">
+                        <div class="product-card" onclick="location.href='product-detail.html'">
+                            <div class="p-img">
+                                <span class="badge sale">-30%</span>
+                                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop" alt="Nordic Sofa">
+                                <button class="btn-add">ดูรายละเอียดสินค้า</button>
+                            </div>
+                            <div class="p-info">
+                                <div class="p-cat">LIVING ROOM</div>
+                                <h3>Nordic L-Shape Sofa</h3>
+                                <div class="p-price">
+                                    <span class="curr">฿12,900</span>
+                                    <del class="old">฿18,500</del>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
     <div class="floating-container" id="masterBtn" onclick="toggleLineBubble(event)">
         <a href="https://line.me/ti/p/ใส่IDLineของคุณตรงนี้" target="_blank" class="line-bubble" id="lineBubble">
@@ -100,6 +147,7 @@
     </div>
 
     <script>
+        // ระบบปุ่มติดต่อ
         let bubbleTimer = null;
         function toggleLineBubble(event) {
             if (event.target.closest('.line-bubble')) return;
