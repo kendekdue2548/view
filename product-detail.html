@@ -9,73 +9,77 @@
     <style>
         :root {
             --primary: #8D7B68;
-            --secondary: #C8B6A6;
             --dark: #2C2C2C;
             --light: #FAF9F6;
-            --orange-btn: #FF8C00; /* สีส้มตามรูปตัวอย่าง */
+            --orange-btn: #FF8C00;
             --shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
-        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+        body { background-color: var(--light); color: var(--dark); }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* Header Simple */
-        .detail-header { padding: 20px 0; border-bottom: 1px solid #eee; background: white; margin-bottom: 40px; }
+        /* Header & Nav */
+        .detail-header { padding: 20px 0; background: white; border-bottom: 1px solid #eee; margin-bottom: 30px; }
         .back-btn { text-decoration: none; color: var(--primary); font-weight: 500; display: flex; align-items: center; gap: 10px; }
 
-        /* Product Layout */
-        .product-page { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow); margin-bottom: 50px; }
+        /* Product Card */
+        .product-page { 
+            display: grid; 
+            grid-template-columns: 1.2fr 1fr; 
+            gap: 50px; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: var(--shadow);
+        }
 
-        /* Gallery */
-        .gallery-container { display: flex; flex-direction: column; gap: 20px; }
-        .main-image { width: 100%; border-radius: 10px; overflow: hidden; background: #f5f5f5; }
-        .main-image img { width: 100%; height: auto; display: block; transition: 0.3s; }
+        /* Gallery - ปรับปรุงให้นิ่งและสวยงาม */
+        .main-image { width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+        .main-image img { width: 100%; height: auto; display: block; }
         
-        .thumb-grid { display: flex; gap: 15px; }
-        .thumb { width: 80px; height: 80px; border-radius: 5px; cursor: pointer; border: 2px solid transparent; overflow: hidden; opacity: 0.6; transition: 0.3s; }
-        .thumb.active { border-color: var(--primary); opacity: 1; }
+        .thumb-grid { display: flex; gap: 10px; }
+        .thumb { 
+            width: 70px; height: 70px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            border: 2px solid transparent; 
+            overflow: hidden; 
+            transition: 0.3s; 
+        }
+        .thumb.active { border-color: var(--primary); }
         .thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Info Panel */
-        .info-panel { display: flex; flex-direction: column; gap: 25px; }
-        .brand-tag { color: var(--primary); font-weight: 500; letter-spacing: 1px; font-size: 0.9rem; }
-        .product-name { font-size: 2.2rem; font-weight: 600; line-height: 1.2; }
-        .price-row { display: flex; align-items: baseline; gap: 15px; }
-        .current-price { font-size: 2rem; font-weight: 600; color: var(--dark); }
-        .old-price { color: #bbb; text-decoration: line-through; font-size: 1.2rem; }
+        /* Info */
+        .info-panel { display: flex; flex-direction: column; gap: 20px; }
+        .product-name { font-size: 2rem; font-weight: 600; }
+        .price-row { display: flex; align-items: baseline; gap: 15px; margin: 10px 0; }
+        .current-price { font-size: 1.8rem; font-weight: 600; color: var(--dark); }
+        .old-price { color: #bbb; text-decoration: line-through; }
 
-        .divider { height: 1px; background: #eee; width: 100%; }
-
-        /* Options */
-        .option-group { display: flex; flex-direction: column; gap: 10px; }
-        .option-label { font-weight: 500; color: #666; font-size: 0.95rem; }
+        .option-label { font-weight: 500; color: #666; margin-bottom: 8px; display: block; }
         
         .side-selector { display: flex; gap: 10px; }
-        .side-btn { padding: 10px 30px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; transition: 0.2s; font-weight: 500; }
+        .side-btn { padding: 8px 25px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 4px; }
         .side-btn.active { border-color: var(--dark); background: var(--dark); color: white; }
 
-        .color-selector { display: flex; gap: 15px; }
-        .color-dot { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; border: 3px solid white; box-shadow: 0 0 0 1px #ddd; transition: 0.2s; }
-        .color-dot.active { box-shadow: 0 0 0 2px var(--dark); transform: scale(1.1); }
-
         /* Actions */
-        .action-row { display: flex; gap: 15px; margin-top: 20px; }
-        .wish-btn { padding: 15px 20px; border: 1px solid #eee; background: white; border-radius: 8px; cursor: pointer; color: #ff4d4d; font-size: 1.2rem; transition: 0.2s; }
-        .wish-btn:hover { background: #fff5f5; }
-        
-        .add-cart-btn { flex: 1; padding: 15px; background: var(--orange-btn); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
-        .add-cart-btn:hover { background: #e67e00; transform: translateY(-2px); }
+        .action-row { display: flex; gap: 15px; margin-top: 15px; }
+        .add-cart-btn { 
+            flex: 1; padding: 15px; 
+            background: var(--orange-btn); 
+            color: white; border: none; 
+            border-radius: 6px; font-weight: 600; 
+            cursor: pointer; display: flex; 
+            align-items: center; justify-content: center; gap: 10px; 
+        }
 
-        .trust-badges { display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: #2D5A27; margin-top: 10px; }
-        .trust-badges i { width: 20px; }
+        .trust-badges { font-size: 0.9rem; color: #2D5A27; margin-top: 15px; }
+        .trust-badges p { margin-bottom: 8px; }
 
-        /* Mobile */
         @media (max-width: 768px) {
-            .product-page { grid-template-columns: 1fr; padding: 20px; gap: 30px; }
-            .product-name { font-size: 1.6rem; }
-            .current-price { font-size: 1.6rem; }
+            .product-page { grid-template-columns: 1fr; padding: 20px; }
         }
     </style>
 </head>
@@ -83,9 +87,7 @@
 
     <header class="detail-header">
         <div class="container">
-            <a href="living-room.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i> กลับไปหน้าสินค้า
-            </a>
+            <a href="living-room.html" class="back-btn"><i class="fas fa-arrow-left"></i> กลับสู่หน้าสินค้า</a>
         </div>
     </header>
 
@@ -93,7 +95,7 @@
         <div class="product-page">
             <div class="gallery-container">
                 <div class="main-image">
-                    <img id="viewImage" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800" alt="Nordic Sofa">
+                    <img id="viewImage" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800" alt="Nordic Green Sofa">
                 </div>
                 <div class="thumb-grid">
                     <div class="thumb active" onclick="updateImg('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800', this)">
@@ -106,9 +108,9 @@
             </div>
 
             <div class="info-panel">
-                <div class="brand-info">
-                    <span class="brand-tag">LIVING ROOM COLLECTION</span>
-                    <h1 class="product-name">โซฟาผ้า L-SHAPE รุ่น Nordic จิม</h1>
+                <div>
+                    <span style="color: var(--primary); font-size: 0.8rem; letter-spacing: 1px;">LIVING ROOM COLLECTION</span>
+                    <h1 class="product-name">โซฟาผ้า L-SHAPE รุ่น Nordic จิม - สีเขียว</h1>
                 </div>
 
                 <div class="price-row">
@@ -116,67 +118,48 @@
                     <span class="old-price">฿18,500</span>
                 </div>
 
-                <div class="divider"></div>
+                <div style="height: 1px; background: #eee; margin: 10px 0;"></div>
 
                 <div class="option-group">
                     <span class="option-label">เลือกด้าน L-Shape:</span>
                     <div class="side-selector">
-                        <button class="side-btn active" onclick="selectSide('ซ้าย', this)">ซ้าย</button>
-                        <button class="side-btn" onclick="selectSide('ขวา', this)">ขวา</button>
+                        <button class="side-btn active" onclick="setSide('ซ้าย', this)">ซ้าย</button>
+                        <button class="side-btn" onclick="setSide('ขวา', this)">ขวา</button>
                     </div>
                 </div>
 
                 <div class="option-group">
-                    <span class="option-label">เลือกสีผ้า:</span>
-                    <div class="color-selector">
-                        <div class="color-dot active" style="background: #2D5A27;" onclick="selectColor('เขียว', this)" title="เขียวมรกต"></div>
-                        <div class="color-dot" style="background: #7D7D7D;" onclick="selectColor('เทา', this)" title="เทา"></div>
-                        <div class="color-dot" style="background: #4B3621;" onclick="selectColor('น้ำตาล', this)" title="น้ำตาล"></div>
-                        <div class="color-dot" style="background: #333;" onclick="selectColor('ดำ', this)" title="ดำ"></div>
+                    <span class="option-label">สีที่เลือก:</span>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 30px; height: 30px; border-radius: 50%; background: #2D5A27; border: 2px solid #ddd;"></div>
+                        <span style="font-size: 0.9rem;">เขียวมรกต (Green Velvet)</span>
                     </div>
                 </div>
 
-                <div class="divider"></div>
-
                 <div class="action-row">
-                    <button class="wish-btn"><i class="far fa-heart"></i></button>
-                    <button class="add-cart-btn" onclick="confirmOrder()">
+                    <button class="add-cart-btn" onclick="alert('เพิ่มโซฟาสีเขียวลงรถเข็นแล้ว')">
                         <i class="fas fa-shopping-cart"></i> เพิ่มไปยังรถเข็น
                     </button>
                 </div>
 
                 <div class="trust-badges">
-                    <p><i class="fas fa-check-circle"></i> สินค้าสั่งทำพิเศษ (Custom Made)</p>
-                    <p><i class="fas fa-truck"></i> จัดส่งและติดตั้งฟรี กทม. และปริมณฑล</p>
-                    <p><i class="fas fa-shield-alt"></i> รับประกันโครงสร้าง 1 ปี</p>
+                    <p><i class="fas fa-check-circle"></i> สินค้าสั่งทำพิเศษเฉพาะสีเขียว</p>
+                    <p><i class="fas fa-truck"></i> ส่งฟรีพร้อมติดตั้ง กทม./ปริมณฑล</p>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
-        let choice = { side: 'ซ้าย', color: 'เขียว' };
-
         function updateImg(url, el) {
             document.getElementById('viewImage').src = url;
             document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
         }
 
-        function selectSide(val, el) {
-            choice.side = val;
+        function setSide(side, el) {
             document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
-        }
-
-        function selectColor(val, el) {
-            choice.color = val;
-            document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
-            el.classList.add('active');
-        }
-
-        function confirmOrder() {
-            alert(`เลือกสินค้าเรียบร้อย!\nด้าน: ${choice.side}\nสี: ${choice.color}\nราคา: ฿12,900`);
         }
     </script>
 </body>
