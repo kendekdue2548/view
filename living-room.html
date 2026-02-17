@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Room - ME SOFA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo" onclick="location.href='index.html'" style="cursor:pointer;"><h2>ME SOFA.</h2></div>
+            <div class="user-actions">
+                <a href="index.html" class="icon-link"><i class="fas fa-home"></i> กลับหน้าหลัก</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section-title">
+            <h3>LIVING ROOM COLLECTION</h3>
+            <div class="line"></div>
+        </div>
+
+        <section class="product-grid">
+            <div class="product-card" onclick="location.href='product-detail.html'">
+                <div class="p-img">
+                    <span class="badge sale">-30%</span>
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=500&auto=format&fit=crop">
+                    <button class="btn-add"><i class="fas fa-plus"></i> ดูรายละเอียด</button>
+                </div>
+                <div class="p-info">
+                    <div class="p-cat">Living Room</div>
+                    <h3>Nordic L-Shape Sofa</h3>
+                    <div class="p-price">
+                        <span>฿12,900</span>
+                        <del>฿18,500</del>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="floating-container" id="masterBtn" onclick="toggleLineBubble(event)">
+        <a href="#" class="line-bubble" id="lineBubble">@ LINE</a>
+        <div class="main-contact-btn">
+            <div class="red-badge"><span>ติดต่อ</span><span>สอบถาม</span></div>
+            <div class="icon-circle"><i class="fas fa-comment-dots"></i></div>
+        </div>
+    </div>
+
+    <script>
+        let bubbleTimer = null;
+        function toggleLineBubble(event) {
+            if (event.target.closest('.line-bubble')) return;
+            event.preventDefault(); event.stopPropagation();
+            const bubble = document.getElementById('lineBubble');
+            if (bubble.classList.contains('show-bubble')) {
+                bubble.classList.remove('show-bubble');
+                if (bubbleTimer) clearTimeout(bubbleTimer);
+            } else {
+                bubble.classList.add('show-bubble');
+                bubbleTimer = setTimeout(() => { bubble.classList.remove('show-bubble'); }, 120000);
+            }
+        }
+    </script>
+</body>
+</html>
