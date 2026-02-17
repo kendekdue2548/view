@@ -33,11 +33,45 @@
             box-shadow: var(--shadow);
         }
 
-        .main-image { width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
-        .main-image img { width: 100%; height: auto; display: block; }
-        
-        /* Thumbnail Gallery - เหลือแค่รูปเดียว */
-        .thumb-grid { display: flex; gap: 10px; }
+        /* --- ส่วนที่แก้ไข: โครงสร้างสำหรับเปลี่ยนสี Real-time --- */
+        .gallery-container {
+            position: relative;
+        }
+
+        .sofa-viewer {
+            position: relative;
+            width: 100%;
+            background-color: #f5f5f5; /* พื้นหลังจำลองห้อง */
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* เลเยอร์สีที่จะเปลี่ยน (อยู่หลังรูปโซฟา) */
+        #colorLayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #2D5A27; /* สีเริ่มต้น */
+            transition: background-color 0.5s ease;
+        }
+
+        /* รูปโซฟา PNG โปร่งใส */
+        #sofaImage {
+            position: relative;
+            width: 90%;
+            height: auto;
+            z-index: 2;
+            mix-blend-mode: multiply; /* เทคนิคผสมสีให้เข้ากับแสงเงา */
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .thumb-grid { display: flex; gap: 10px; margin-top: 15px; }
         .thumb { 
             width: 70px; height: 70px; 
             border-radius: 5px; 
@@ -45,6 +79,7 @@
             overflow: hidden; 
         }
         .thumb img { width: 100%; height: 100%; object-fit: cover; }
+        /* ------------------------------------------- */
 
         .info-panel { display: flex; flex-direction: column; gap: 20px; }
         .product-name { font-size: 2rem; font-weight: 600; }
@@ -58,7 +93,6 @@
         .side-btn { padding: 8px 25px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 4px; }
         .side-btn.active { border-color: var(--dark); background: var(--dark); color: white; }
 
-        /* Color Selector - กลับมาครบทุกสี */
         .color-selector { display: flex; gap: 12px; }
         .color-dot { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px #ddd; cursor: pointer; transition: 0.2s; }
         .color-dot.active { box-shadow: 0 0 0 2px var(--dark); transform: scale(1.1); }
@@ -92,14 +126,16 @@
     <main class="container">
         <div class="product-page">
             <div class="gallery-container">
-                <div class="main-image">
-                    <img id="viewImage" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800" alt="Nordic Green Sofa">
+                <div class="sofa-viewer">
+                    <div id="colorLayer"></div>
+                    <img id="sofaImage" src="photo-1555041469-a586c61ea9bc-Photoroom.png" alt="Sofa Preview">
                 </div>
                 <div class="thumb-grid">
                     <div class="thumb">
                         <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150">
                     </div>
                 </div>
+                <p style="font-size: 0.75rem; color: #999; margin-top: 10px; text-align: center;">*ภาพจำลองสีผ้าแบบ Real-time</p>
             </div>
 
             <div class="info-panel">
@@ -126,10 +162,11 @@
                 <div class="option-group">
                     <span class="option-label">เลือกสีผ้า:</span>
                     <div class="color-selector">
-                        <div class="color-dot active" style="background: #2D5A27;" onclick="selectColor('เขียว', this)" title="เขียว"></div>
-                        <div class="color-dot" style="background: #7D7D7D;" onclick="selectColor('เทา', this)" title="เทา"></div>
-                        <div class="color-dot" style="background: #4B3621;" onclick="selectColor('น้ำตาล', this)" title="น้ำตาล"></div>
-                        <div class="color-dot" style="background: #333;" onclick="selectColor('ดำ', this)" title="ดำ"></div>
+                        <div class="color-dot active" style="background: #2D5A27;" onclick="selectColor('#2D5A27', this)" title="เขียว"></div>
+                        <div class="color-dot" style="background: #7D7D7D;" onclick="selectColor('#7D7D7D', this)" title="เทา"></div>
+                        <div class="color-dot" style="background: #4B3621;" onclick="selectColor('#4B3621', this)" title="น้ำตาล"></div>
+                        <div class="color-dot" style="background: #333333;" onclick="selectColor('#333333', this)" title="ดำ"></div>
+                        <div class="color-dot" style="background: #8B4513;" onclick="selectColor('#8B4513', this)" title="ส้มอิฐ"></div>
                     </div>
                 </div>
 
@@ -153,9 +190,23 @@
             el.classList.add('active');
         }
 
-        function selectColor(color, el) {
+        // ฟังก์ชันใหม่สำหรับเปลี่ยนสี Real-time
+        function selectColor(colorCode, el) {
+            // 1. เปลี่ยนสีพื้นหลังใต้รูปโซฟา
+            const layer = document.getElementById('colorLayer');
+            layer.style.backgroundColor = colorCode;
+
+            // 2. ปรับสถานะปุ่มเลือกสี
             document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
             el.classList.add('active');
+
+            // 3. ปรับค่าความสว่างรูปภาพตามความมืดของสีเพื่อให้ดูเนียนขึ้น
+            const sofa = document.getElementById('sofaImage');
+            if(colorCode === '#333333') { // ถ้าเป็นสีดำ
+                sofa.style.filter = "brightness(0.85) contrast(1.2)";
+            } else {
+                sofa.style.filter = "brightness(1.1) contrast(1.1)";
+            }
         }
     </script>
 </body>
