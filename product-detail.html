@@ -6,80 +6,157 @@
     <title>Nordic L-Shape Sofa - ME SOFA DESIGN</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #8D7B68;
+            --dark: #2C2C2C;
+            --light: #FAF9F6;
+            --orange-btn: #FF8C00;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
+        body { background-color: var(--light); color: var(--dark); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        .detail-header { padding: 20px 0; background: white; border-bottom: 1px solid #eee; margin-bottom: 30px; }
+        .back-btn { text-decoration: none; color: var(--primary); font-weight: 500; display: flex; align-items: center; gap: 10px; }
+
+        .product-page { 
+            display: grid; 
+            grid-template-columns: 1.2fr 1fr; 
+            gap: 50px; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: var(--shadow);
+        }
+
+        .main-image { width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+        .main-image img { width: 100%; height: auto; display: block; }
+        
+        /* Thumbnail Gallery - เหลือแค่รูปเดียว */
+        .thumb-grid { display: flex; gap: 10px; }
+        .thumb { 
+            width: 70px; height: 70px; 
+            border-radius: 5px; 
+            border: 2px solid var(--primary); 
+            overflow: hidden; 
+        }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        .info-panel { display: flex; flex-direction: column; gap: 20px; }
+        .product-name { font-size: 2rem; font-weight: 600; }
+        .price-row { display: flex; align-items: baseline; gap: 15px; margin: 10px 0; }
+        .current-price { font-size: 1.8rem; font-weight: 600; color: var(--dark); }
+        .old-price { color: #bbb; text-decoration: line-through; }
+
+        .option-label { font-weight: 500; color: #666; margin-bottom: 8px; display: block; }
+        
+        .side-selector { display: flex; gap: 10px; }
+        .side-btn { padding: 8px 25px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 4px; }
+        .side-btn.active { border-color: var(--dark); background: var(--dark); color: white; }
+
+        /* Color Selector - กลับมาครบทุกสี */
+        .color-selector { display: flex; gap: 12px; }
+        .color-dot { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px #ddd; cursor: pointer; transition: 0.2s; }
+        .color-dot.active { box-shadow: 0 0 0 2px var(--dark); transform: scale(1.1); }
+
+        .action-row { display: flex; gap: 15px; margin-top: 15px; }
+        .add-cart-btn { 
+            flex: 1; padding: 15px; 
+            background: var(--orange-btn); 
+            color: white; border: none; 
+            border-radius: 6px; font-weight: 600; 
+            cursor: pointer; display: flex; 
+            align-items: center; justify-content: center; gap: 10px; 
+        }
+
+        .trust-badges { font-size: 0.9rem; color: #2D5A27; margin-top: 15px; }
+        .trust-badges p { margin-bottom: 8px; }
+
+        @media (max-width: 768px) {
+            .product-page { grid-template-columns: 1fr; padding: 20px; }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="detail-header" style="padding: 20px 0; background: white; border-bottom: 1px solid #eee; margin-bottom: 30px;">
+    <header class="detail-header">
         <div class="container">
-            <a href="living-room.html" class="back-btn" style="text-decoration: none; color: #8D7B68; font-weight: 500; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-arrow-left"></i> กลับสู่หน้าสินค้า
-            </a>
+            <a href="living-room.html" class="back-btn"><i class="fas fa-arrow-left"></i> กลับสู่หน้าสินค้า</a>
         </div>
     </header>
 
     <main class="container">
         <div class="product-page">
-            <div class="gallery-side">
-                <div class="visualizer-container">
-                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800" class="base-room">
-                    <div id="sofaTint"></div>
+            <div class="gallery-container">
+                <div class="main-image">
+                    <img id="viewImage" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800" alt="Nordic Green Sofa">
                 </div>
-                
                 <div class="thumb-grid">
                     <div class="thumb">
                         <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150">
                     </div>
                 </div>
-                <p style="font-size: 0.8rem; color: #999; margin-top: 15px; text-align: center;">*คลิกเลือกสีด้านขวาเพื่อจำลองสีผ้าโซฟาแบบ Real-time</p>
             </div>
 
             <div class="info-panel">
                 <div>
-                    <span style="color: #8D7B68; font-size: 0.8rem; letter-spacing: 1px; font-weight: 500;">LIVING ROOM COLLECTION</span>
-                    <h1 class="product-name" style="font-size: 2rem; margin-top: 5px;">โซฟาผ้า L-SHAPE รุ่น Nordic จิม</h1>
+                    <span style="color: var(--primary); font-size: 0.8rem; letter-spacing: 1px;">LIVING ROOM COLLECTION</span>
+                    <h1 class="product-name">โซฟาผ้า L-SHAPE รุ่น Nordic จิม</h1>
                 </div>
 
-                <div class="price-row" style="display: flex; align-items: baseline; gap: 15px; margin: 15px 0;">
-                    <span class="current-price" style="font-size: 1.8rem; font-weight: 600;">฿12,900</span>
-                    <span class="old-price" style="color: #bbb; text-decoration: line-through;">฿18,500</span>
+                <div class="price-row">
+                    <span class="current-price">฿12,900</span>
+                    <span class="old-price">฿18,500</span>
                 </div>
 
-                <div style="height: 1px; background: #eee; margin: 20px 0;"></div>
+                <div style="height: 1px; background: #eee; margin: 10px 0;"></div>
 
                 <div class="option-group">
-                    <span class="option-label" style="font-weight: 500; color: #666; display: block; margin-bottom: 10px;">เลือกด้าน L-Shape:</span>
-                    <div class="side-selector" style="display: flex; gap: 10px;">
+                    <span class="option-label">เลือกด้าน L-Shape:</span>
+                    <div class="side-selector">
                         <button class="side-btn active" onclick="setSide('ซ้าย', this)">ซ้าย</button>
                         <button class="side-btn" onclick="setSide('ขวา', this)">ขวา</button>
                     </div>
                 </div>
 
-                <div class="option-group" style="margin-top: 25px;">
-                    <span class="option-label" style="font-weight: 500; color: #666; display: block; margin-bottom: 10px;">เลือกสีผ้าที่ชอบ:</span>
-                    <div class="color-selector" style="display: flex; gap: 12px;">
-                        <div class="color-dot active" style="background: #2D5A27;" onclick="selectColor('#2D5A27', this)" title="เขียวเดิม"></div>
-                        <div class="color-dot" style="background: #7D7D7D;" onclick="selectColor('#7D7D7D', this)" title="เทา"></div>
-                        <div class="color-dot" style="background: #4B3621;" onclick="selectColor('#4B3621', this)" title="น้ำตาล"></div>
-                        <div class="color-dot" style="background: #333333;" onclick="selectColor('#333333', this)" title="ดำ"></div>
-                        <div class="color-dot" style="background: #8B4513;" onclick="selectColor('#8B4513', this)" title="ส้มอิฐ"></div>
+                <div class="option-group">
+                    <span class="option-label">เลือกสีผ้า:</span>
+                    <div class="color-selector">
+                        <div class="color-dot active" style="background: #2D5A27;" onclick="selectColor('เขียว', this)" title="เขียว"></div>
+                        <div class="color-dot" style="background: #7D7D7D;" onclick="selectColor('เทา', this)" title="เทา"></div>
+                        <div class="color-dot" style="background: #4B3621;" onclick="selectColor('น้ำตาล', this)" title="น้ำตาล"></div>
+                        <div class="color-dot" style="background: #333;" onclick="selectColor('ดำ', this)" title="ดำ"></div>
                     </div>
                 </div>
 
-                <div class="action-row" style="margin-top: 30px;">
-                    <button class="add-cart-btn" style="width: 100%; padding: 15px; background: #FF8C00; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <div class="action-row">
+                    <button class="add-cart-btn">
                         <i class="fas fa-shopping-cart"></i> เพิ่มไปยังรถเข็น
                     </button>
                 </div>
 
-                <div style="font-size: 0.9rem; color: #2D5A27; margin-top: 20px;">
+                <div class="trust-badges">
                     <p><i class="fas fa-check-circle"></i> สินค้าสั่งทำพิเศษ (Custom Made)</p>
-                    <p style="margin-top: 5px;"><i class="fas fa-truck"></i> ส่งฟรีพร้อมติดตั้ง กทม./ปริมณฑล</p>
+                    <p><i class="fas fa-truck"></i> จัดส่งและติดตั้งฟรี กทม. และปริมณฑล</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        function setSide(side, el) {
+            document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function selectColor(color, el) {
+            document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+            el.classList.add('active');
+        }
+    </script>
 </body>
 </html>
