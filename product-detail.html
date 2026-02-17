@@ -6,60 +6,33 @@
     <title>Nordic L-Shape Sofa - ME SOFA DESIGN</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --primary: #8D7B68;
-            --dark: #2C2C2C;
-            --light: #FAF9F6;
-            --orange-btn: #FF8C00;
-            --shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
-        body { background-color: var(--light); color: var(--dark); }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* Header */
-        .detail-header { padding: 20px 0; background: white; border-bottom: 1px solid #eee; margin-bottom: 30px; }
-        .back-btn { text-decoration: none; color: var(--primary); font-weight: 500; display: flex; align-items: center; gap: 10px; }
-
-        /* Product Layout */
-        .product-page { 
-            display: grid; 
-            grid-template-columns: 1.2fr 1fr; 
-            gap: 50px; 
-            background: white; 
-            padding: 40px; 
-            border-radius: 15px; 
-            box-shadow: var(--shadow);
-        }
-
-        /* --- เทคนิค Real-time Color Changer --- */
+        /* CSS เฉพาะส่วน Visualizer เพื่อให้โซฟาเปลี่ยนสีได้จริง */
         .visualizer-container {
             position: relative;
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
             background: #fff;
+            box-shadow: var(--shadow);
         }
 
-        /* 1. รูปพื้นหลังห้องจริง */
         .base-room {
             width: 100%;
             display: block;
         }
 
-        /* 2. เลเยอร์สีที่จะเปลี่ยน (ทับเฉพาะตัวโซฟา) */
+        /* เลเยอร์สีที่จะเปลี่ยน (ทับเฉพาะตัวโซฟาด้วยระบบ Mask) */
         #sofaTint {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: transparent; /* เริ่มต้นด้วยสีเดิมของรูป */
+            background-color: transparent; 
             
-            /* ใช้รูป PNG โปร่งใสของคุณทำหน้ากาก (Mask) */
+            /* เรียกใช้รูป PNG โปร่งใสที่คุณส่งมาทำ Mask */
             -webkit-mask-image: url('photo-1555041469-a586c61ea9bc-Photoroom.png');
             mask-image: url('photo-1555041469-a586c61ea9bc-Photoroom.png');
             -webkit-mask-size: 100% 100%;
@@ -67,7 +40,7 @@
             -webkit-mask-repeat: no-repeat;
             mask-repeat: no-repeat;
 
-            /* ผสมสีให้เนียนเข้ากับแสงเงา */
+            /* ผสมสีให้เนียนเข้ากับแสงเงา (Multiply) */
             mix-blend-mode: multiply; 
             transition: background-color 0.4s ease;
             pointer-events: none;
@@ -77,27 +50,6 @@
         .thumb-grid { display: flex; gap: 10px; margin-top: 15px; }
         .thumb { width: 70px; height: 70px; border-radius: 5px; border: 2px solid var(--primary); overflow: hidden; }
         .thumb img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* Info Panel */
-        .info-panel { display: flex; flex-direction: column; gap: 20px; }
-        .product-name { font-size: 2rem; font-weight: 600; }
-        .price-row { display: flex; align-items: baseline; gap: 15px; margin: 10px 0; }
-        .current-price { font-size: 1.8rem; font-weight: 600; }
-        .old-price { color: #bbb; text-decoration: line-through; }
-
-        .option-label { font-weight: 500; color: #666; margin-bottom: 8px; display: block; }
-        .side-selector { display: flex; gap: 10px; }
-        .side-btn { padding: 8px 25px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 4px; }
-        .side-btn.active { border-color: var(--dark); background: var(--dark); color: white; }
-
-        .color-selector { display: flex; gap: 12px; }
-        .color-dot { width: 35px; height: 35px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px #ddd; cursor: pointer; transition: 0.2s; }
-        .color-dot.active { box-shadow: 0 0 0 2px var(--dark); transform: scale(1.1); }
-
-        .action-row { display: flex; gap: 15px; margin-top: 15px; }
-        .add-cart-btn { flex: 1; padding: 15px; background: var(--orange-btn); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
-
-        @media (max-width: 768px) { .product-page { grid-template-columns: 1fr; padding: 20px; } }
     </style>
 </head>
 <body>
@@ -118,9 +70,11 @@
                 </div>
                 
                 <div class="thumb-grid">
-                    <div class="thumb"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150"></div>
+                    <div class="thumb">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150">
+                    </div>
                 </div>
-                <p style="font-size: 0.8rem; color: #999; margin-top: 10px; text-align: center;">*คลิกที่ปุ่มสีเพื่อทดลองเปลี่ยนสีผ้าโซฟาแบบ Real-time</p>
+                <p style="font-size: 0.8rem; color: #999; margin-top: 10px; text-align: center;">*คลิกที่ปุ่มสีด้านขวาเพื่อจำลองสีผ้าโซฟาแบบ Real-time</p>
             </div>
 
             <div class="info-panel">
@@ -133,6 +87,8 @@
                     <span class="current-price">฿12,900</span>
                     <span class="old-price">฿18,500</span>
                 </div>
+
+                <div style="height: 1px; background: #eee; margin: 10px 0;"></div>
 
                 <div class="option-group">
                     <span class="option-label">เลือกด้าน L-Shape:</span>
@@ -159,31 +115,31 @@
 
                 <div style="font-size: 0.9rem; color: #2D5A27; margin-top: 10px;">
                     <p><i class="fas fa-check-circle"></i> สินค้าสั่งทำพิเศษ (Custom Made)</p>
-                    <p><i class="fas fa-truck"></i> ส่งฟรีพร้อมติดตั้ง กทม./ปริมณฑล</p>
+                    <p><i class="fas fa-truck"></i> จัดส่งและติดตั้งฟรี กทม./ปริมณฑล</p>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
-        // ฟังก์ชันเลือกด้าน
+        // ฟังก์ชันเลือกด้าน (โค้ดเดิม)
         function setSide(side, el) {
             document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
         }
 
-        // ฟังก์ชันเปลี่ยนสีโซฟา Real-time
+        // ฟังก์ชันเปลี่ยนสีโซฟา Real-time (โค้ดใหม่ที่เชื่อมกับระบบ Mask)
         function selectColor(colorCode, el) {
             const tint = document.getElementById('sofaTint');
             
-            // ถ้าเลือกสีเขียว (สีเดิม) ให้เป็นใสเพื่อให้เห็นรูปจริงที่สวยที่สุด
+            // เปลี่ยนสีเฉพาะบนตัวโซฟา
             if(colorCode === '#2D5A27') {
-                tint.style.backgroundColor = 'transparent';
+                tint.style.backgroundColor = 'transparent'; // สีเขียวเดิมให้เป็นใส
             } else {
                 tint.style.backgroundColor = colorCode;
             }
 
-            // จัดการสถานะปุ่ม
+            // จัดการไฮไลท์ปุ่มสี
             document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
             el.classList.add('active');
         }
