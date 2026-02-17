@@ -4,21 +4,21 @@ function setSide(side, el) {
     el.classList.add('active');
 }
 
-// ฟังก์ชันหัวใจสำคัญสำหรับการเปลี่ยนสีแบบ Real-time
+// ฟังก์ชันสำหรับเปลี่ยนสีโซฟาแบบ Real-time (ฉบับแก้ไข)
 function selectColor(colorCode, el) {
-    // 1. เปลี่ยนสีเลเยอร์ที่ซ้อนอยู่ใต้รูปโซฟา
-    const layer = document.getElementById('colorLayer');
-    layer.style.backgroundColor = colorCode;
+    // 1. เปลี่ยนชื่อ ID จาก colorLayer เป็น sofaTint ให้ตรงกับ HTML ล่าสุด
+    const tint = document.getElementById('sofaTint');
+    
+    // 2. เงื่อนไขการเปลี่ยนสี
+    if (colorCode === '#2D5A27') {
+        // ถ้าเลือกสีเขียวเดิม ให้โปร่งใสเพื่อโชว์ความสวยของรูปต้นฉบับ
+        tint.style.backgroundColor = 'transparent';
+    } else {
+        // ถ้าเลือกสีอื่น ให้เปลี่ยนสีเลเยอร์ที่ถูก Mask ไว้บนตัวโซฟา
+        tint.style.backgroundColor = colorCode;
+    }
 
-    // 2. ปรับสถานะปุ่มวงกลมสีที่ถูกเลือก
+    // 3. ปรับสถานะปุ่มวงกลมสีที่ถูกเลือก
     document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
     el.classList.add('active');
-
-    // 3. ปรับค่าความสว่างของรูป PNG ให้เนียนไปกับสีที่เลือก
-    const sofa = document.getElementById('sofaImage');
-    if(colorCode === '#333333') { // กรณีเลือกสีดำ ให้ดรอปความสว่างลงหน่อย
-        sofa.style.filter = "brightness(0.85) contrast(1.2)";
-    } else {
-        sofa.style.filter = "brightness(1.1) contrast(1.1)";
-    }
 }
