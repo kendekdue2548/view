@@ -234,24 +234,8 @@ body {
 .icon-item:hover .img-circle { border-color: var(--primary); }
 .icon-item span { font-weight: 500; font-size: 1rem; color: #555; }
 
-/* 5. Flash Sale */
-.flash-sale-banner {
-    background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
-    color: white;
-    padding: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 4px;
-    margin-bottom: 40px;
-}
-.fs-info h2 { color: #FFD700; font-style: italic; }
-.fs-countdown {
-    font-size: 1.5rem;
-    font-weight: bold;
-    border: 2px solid white;
-    padding: 10px 20px;
-}
+/* 5. Flash Sale (ถูกลบออกตามคำขอในหน้า HTML) */
+/* หมายเหตุ: ไม่ต้องลบ CSS ส่วนนี้ทิ้งก็ได้หากยังต้องการเก็บสไตล์ไว้ */
 
 /* 6. Product Cards */
 .product-grid {
@@ -311,10 +295,7 @@ body {
 .p-price { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
 .p-price del { color: #ccc; font-size: 0.9rem; margin-left: 10px; font-weight: normal; }
 
-/* ------------------------------------------------------- */
-/* 7. ระบบ Visualizer เปลี่ยนสีโซฟา (Masking System) */
-/* ------------------------------------------------------- */
-
+/* 7. ระบบ Visualizer เปลี่ยนสีโซฟา */
 .visualizer-container {
     position: relative;
     width: 100%;
@@ -335,7 +316,6 @@ body {
     display: block;
 }
 
-/* เลเยอร์สีที่จะเปลี่ยน (ทับเฉพาะตัวโซฟา) */
 #sofaTint {
     position: absolute;
     top: 0;
@@ -343,16 +323,12 @@ body {
     width: 100%;
     height: 100%;
     background-color: transparent; 
-    
-    /* เรียกใช้รูป PNG โปร่งใสที่คุณส่งมาทำ Mask */
     -webkit-mask-image: url('photo-1555041469-a586c61ea9bc-Photoroom.png');
     mask-image: url('photo-1555041469-a586c61ea9bc-Photoroom.png');
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
-
-    /* ผสมสีให้เนียนเข้ากับแสงเงา */
     mix-blend-mode: multiply; 
     transition: background-color 0.4s ease;
     pointer-events: none;
@@ -360,48 +336,7 @@ body {
 }
 
 /* ------------------------------------------------------- */
-/* MOBILE RESPONSIVE */
-/* ------------------------------------------------------- */
-
-@media (max-width: 768px) {
-    .header-content { flex-direction: row; flex-wrap: wrap; padding-bottom: 10px; }
-    .logo { order: 1; flex: 1; text-align: left; }
-    .user-actions { order: 2; justify-content: flex-end; }
-    .search-bar { order: 3; width: 100%; max-width: 100%; margin-top: 10px; }
-    
-    .hero-full { height: 400px; background-position: 70% center; }
-    .hero-overlay { background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 100%); }
-    .hero-text { text-align: center; margin: 0 auto; }
-    .hero-text h1 { font-size: 2.2rem; }
-    
-    .relative-box { margin-top: 20px; }
-    .service-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
-    .service-item { flex-direction: column; border: none; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-    .service-item:last-child { border-bottom: none; }
-    
-    .category-icons {
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 20px;
-        gap: 15px;
-        scrollbar-width: none;
-    }
-    .category-icons::-webkit-scrollbar { display: none; }
-    .icon-item { flex: 0 0 auto; width: 80px; text-align: center; }
-    .img-circle { width: 65px; height: 65px; margin: 0 auto 10px; }
-    .flash-sale-banner { flex-direction: column; text-align: center; gap: 15px; }
-}
-
-@media (max-width: 480px) {
-    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .p-img { height: 180px; }
-    .btn-add { display: none; }
-}
-
-/* ------------------------------------------------------- */
-/* CONTACT BUTTON SYSTEM */
+/* CONTACT BUTTON SYSTEM - แก้ไขกรอบสีแดง */
 /* ------------------------------------------------------- */
 
 .floating-container {
@@ -454,6 +389,31 @@ body {
     border-color: white transparent transparent transparent;
 }
 
+.main-contact-btn {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* ปรับให้เรียงกันแบบ column */
+    align-items: flex-end;
+}
+
+/* --- แก้ไขส่วนนี้: กรอบสีแดง ติดต่อ-สอบถาม --- */
+.red-badge {
+    background-color: #D32F2F;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    padding: 10px 20px 10px 15px;
+    border-radius: 20px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin-right: 5px; /* ระยะห่างจากขอบขวา */
+    margin-bottom: -15px; /* ดันให้ลงมาทับส่วนไอคอนเล็กน้อย */
+    position: relative;
+    z-index: 10; /* ให้ลอยอยู่บนสุด */
+}
+
 .icon-circle {
     width: 70px;
     height: 70px;
@@ -465,7 +425,7 @@ body {
     font-size: 35px;
     color: #D4A373;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 2;
+    z-index: 5;
     border: 3px solid white;
     animation: blink-shadow 3s infinite;
 }
@@ -473,6 +433,40 @@ body {
 @keyframes blink-shadow {
     0%, 100% { box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
     50% { box-shadow: 0 0 20px rgba(212, 163, 115, 0.6); }
+}
+
+/* ------------------------------------------------------- */
+/* MOBILE RESPONSIVE */
+/* ------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .header-content { flex-direction: row; flex-wrap: wrap; padding-bottom: 10px; }
+    .logo { order: 1; flex: 1; text-align: left; }
+    .user-actions { order: 2; justify-content: flex-end; }
+    .search-bar { order: 3; width: 100%; max-width: 100%; margin-top: 10px; }
+    
+    .hero-full { height: 400px; background-position: 70% center; }
+    .hero-overlay { background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 100%); }
+    .hero-text { text-align: center; margin: 0 auto; }
+    .hero-text h1 { font-size: 2.2rem; }
+    
+    .relative-box { margin-top: 20px; }
+    .service-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+    .service-item { flex-direction: column; border: none; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+    .service-item:last-child { border-bottom: none; }
+    
+    .category-icons {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        gap: 15px;
+        scrollbar-width: none;
+    }
+    .category-icons::-webkit-scrollbar { display: none; }
+    .icon-item { flex: 0 0 auto; width: 80px; text-align: center; }
+    .img-circle { width: 65px; height: 65px; margin: 0 auto 10px; }
 }
 
 @keyframes fadeUp {
