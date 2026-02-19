@@ -156,7 +156,7 @@
         <div style="height: 80px;"></div>
     </div>
 
-    <div class="floating-container" id="masterBtn" onclick="toggleLineBubble(event)">
+   <div class="floating-container" id="masterBtn" onclick="toggleLineBubble(event)">
         <a href="https://line.me/ti/p/ใส่IDLineของคุณตรงนี้" target="_blank" class="line-bubble" id="lineBubble">
             <span class="at-symbol">@</span> LINE
         </a>
@@ -168,6 +168,56 @@
             <div class="icon-circle">
                 <i class="fab fa-line"></i> 
             </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="toggleShopMenu()">
+            <i class="fas fa-bars"></i>
+            <span>ช้อปสินค้า</span>
+        </div>
+        <div class="nav-item" onclick="location.href='living-room.html'">
+            <i class="fas fa-couch"></i>
+            <span>ห้องต่างๆ</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-tag"></i>
+            <span>โปรโมชั่น</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-truck"></i>
+            <span>บริการ</span>
+        </div>
+    </nav>
+
+    <div class="shop-overlay" id="shopOverlay">
+        <div class="shop-menu-content">
+            <div class="menu-header">
+                <h3>ช้อปสินค้า</h3>
+                <button class="close-btn" onclick="toggleShopMenu()"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="menu-list">
+                <li onclick="location.href='living-room.html'">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150" alt="Living Room">
+                    <span>โซฟาและอาร์มแชร์ (Living Room)</span>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+                <li>
+                    <img src="https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Bedroom">
+                    <span>เตียงนอนและที่นอน (Bedroom)</span>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+                <li>
+                    <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=150" alt="Dining">
+                    <span>โต๊ะและเก้าอี้ทานข้าว (Dining Room)</span>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+                <li>
+                    <img src="https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?q=80&w=150" alt="Office">
+                    <span>โต๊ะทำงาน (Home Office)</span>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -192,6 +242,6 @@
                 }, 120000);
             }
         }
-    <script src="nav-script.js"></script>
+    </script> <script src="nav-script.js"></script>
 </body>
 </html>
