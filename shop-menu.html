@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me Sofa - Shop Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ตัวแปรสีตามธีมหลักของคุณ */
+        :root {
+            --primary: #8D7B68;
+            --dark: #2C2C2C;
+            --white: #FFFFFF;
+            --bg-light: #F9F9F9;
+        }
+
+        body { font-family: 'Kanit', sans-serif; margin: 0; padding: 0; }
+
+        /* --- Bottom Navigation Bar --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.08);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #888;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .nav-item i { font-size: 1.3rem; margin-bottom: 4px; }
+        .nav-item.active { color: var(--primary); }
+        .nav-item:hover { color: var(--primary); }
+
+        /* --- Shop Menu Overlay --- */
+        .shop-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none; /* เริ่มต้นซ่อนไว้ */
+            align-items: flex-end;
+        }
+
+        .shop-menu-content {
+            width: 100%;
+            background: var(--white);
+            border-radius: 25px 25px 0 0;
+            padding-bottom: 30px;
+            animation: slideInUp 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            border-bottom: 1px solid #F0F0F0;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+
+        .menu-header h3 { margin: 0; font-size: 1.2rem; color: var(--dark); font-weight: 500; }
+        .close-btn { background: #F5F5F5; border: none; width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; cursor: pointer; color: #666; }
+
+        /* --- List Items (สไตล์ IKEA) --- */
+        .menu-list { list-style: none; padding: 0; margin: 0; }
+        .menu-list li {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            border-bottom: 1px solid #F9F9F9;
+            transition: 0.2s;
+        }
+
+        .menu-list li:active { background-color: #F0F0F0; }
+        .menu-list li img { width: 55px; height: 55px; border-radius: 12px; object-fit: cover; margin-right: 18px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .menu-list li span { flex: 1; font-size: 1rem; color: #444; }
+        .menu-list li i.fa-chevron-right { color: #DDD; font-size: 0.8rem; }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="toggleShopMenu()">
+            <i class="fas fa-bars"></i>
+            <span>ช้อปสินค้า</span>
+        </div>
+        <a href="#" class="nav-item">
+            <i class="fas fa-couch"></i>
+            <span>ห้องต่างๆ</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-tag"></i>
+            <span>โปรโมชั่น</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-truck"></i>
+            <span>บริการ</span>
+        </a>
+    </nav>
+
+    <div class="shop-overlay" id="shopOverlay">
+        <div class="shop-menu-content">
+            <div class="menu-header">
+                <h3>ช้อปสินค้า</h3>
+                <button class="close-btn" onclick="toggleShopMenu()"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <ul class="menu-list">
+                <li onclick="location.href='living-room.html'">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150" alt="Living Room">
+                    <span>โซฟาและอาร์มแชร์ (Living Room)</span>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+                <li>
+                    <img src="https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Bedroom">
+                    <span>เตียงนอนและที่นอน (Bedroom)</span>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+                <li>
+                    <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=150" alt="Dining">
+                    <span>โต๊ะและเก้าอี้ทานข้าว (Dining Room)</span>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+                <li>
+                    <img src="https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?q=80&w=150" alt="Office">
+                    <span>โต๊ะทำงาน (Home Office)</span>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleShopMenu() {
+            const overlay = document.getElementById('shopOverlay');
+            if (overlay.style.display === 'flex') {
+                overlay.style.display = 'none';
+                document.body.style.overflow = 'auto'; // คืนค่าการ Scroll หน้าหลัก
+            } else {
+                overlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // ป้องกันการ Scroll หน้าหลักขณะเปิดเมนู
+            }
+        }
+
+        // ปิดเมนูเมื่อคลิกพื้นที่ว่างข้างนอก
+        window.onclick = function(event) {
+            const overlay = document.getElementById('shopOverlay');
+            if (event.target == overlay) {
+                toggleShopMenu();
+            }
+        }
+    </script>
+</body>
+</html>
