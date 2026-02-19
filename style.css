@@ -1,5 +1,5 @@
 /* ======================================================= */
-/* THEME: Modern Earth & Minimal (2026 Style) */
+/* THEME: Modern Earth & Minimal (2026 Style) - FINISHED */
 /* ======================================================= */
 
 :root {
@@ -22,6 +22,7 @@
 body {
     background-color: var(--light);
     color: var(--dark);
+    line-height: 1.6;
 }
 
 .container {
@@ -74,7 +75,6 @@ body {
 .search-bar input:focus {
     background: white;
     border-color: var(--primary);
-    box-shadow: 0 5px 15px rgba(141, 123, 104, 0.1);
 }
 
 .search-bar button {
@@ -101,9 +101,8 @@ body {
     font-size: 1.4rem;
     transition: 0.3s;
 }
-.icon-link:hover { color: var(--primary); transform: scale(1.1); }
 
-/* 2. Hero Section */
+/* 2. Hero Section (สัดส่วนตามรูปที่ 2) */
 .hero-full {
     height: 500px;
     background: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
@@ -121,7 +120,7 @@ body {
 }
 
 .hero-text {
-    max-width: 500px;
+    max-width: 550px;
     animation: fadeUp 1s ease;
 }
 
@@ -129,8 +128,8 @@ body {
     display: inline-block;
     background: var(--dark);
     color: white;
-    padding: 5px 10px;
-    font-size: 0.8rem;
+    padding: 5px 12px;
+    font-size: 0.75rem;
     letter-spacing: 2px;
     margin-bottom: 15px;
 }
@@ -149,7 +148,7 @@ body {
 }
 
 .hero-text p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #666;
     margin-bottom: 30px;
 }
@@ -160,12 +159,13 @@ body {
     color: white;
     border: none;
     font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
     transition: 0.3s;
+    border-radius: 4px;
 }
-.btn-primary:hover { background: var(--dark); }
 
-/* 3. Service Box */
+/* 3. Service Box (Trust Bar) */
 .relative-box { position: relative; margin-top: -50px; z-index: 10; }
 .service-grid {
     display: grid;
@@ -184,26 +184,14 @@ body {
     border-right: 1px solid #eee;
 }
 .service-item:last-child { border-right: none; }
-.service-item i { font-size: 2rem; color: var(--accent); }
+.service-item i { font-size: 1.8rem; color: var(--accent); }
 .service-item h3 { font-size: 1.1rem; margin-bottom: 3px; }
 .service-item p { font-size: 0.85rem; color: #888; }
 
-/* 4. Categories */
-.section-title {
-    text-align: center;
-    margin: 60px 0 40px;
-}
-.section-title h3 {
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-.section-title .line {
-    width: 50px;
-    height: 3px;
-    background: var(--primary);
-    margin: 0 auto;
-}
+/* 4. Shop By Category */
+.section-title { text-align: center; margin: 60px 0 40px; }
+.section-title h3 { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 10px; }
+.section-title .line { width: 50px; height: 3px; background: var(--primary); margin: 0 auto; }
 
 .category-icons {
     display: flex;
@@ -213,260 +201,98 @@ body {
     flex-wrap: wrap;
 }
 
-.icon-item {
-    text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.icon-item:hover { transform: translateY(-10px); }
-
+.icon-item { text-align: center; cursor: pointer; transition: 0.3s; }
 .img-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 15px;
-    border: 3px solid transparent;
-    transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 110px; height: 110px; border-radius: 50%;
+    overflow: hidden; margin-bottom: 15px; border: 4px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s;
 }
 .img-circle img { width: 100%; height: 100%; object-fit: cover; }
+.icon-item:hover { transform: translateY(-10px); }
 .icon-item:hover .img-circle { border-color: var(--primary); }
-.icon-item span { font-weight: 500; font-size: 1rem; color: #555; }
 
-/* 5. Flash Sale (ถูกลบออกตามคำขอในหน้า HTML) */
-/* หมายเหตุ: ไม่ต้องลบ CSS ส่วนนี้ทิ้งก็ได้หากยังต้องการเก็บสไตล์ไว้ */
-
-/* 6. Product Cards */
+/* 5. Product Cards */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
 }
 
 .product-card {
     background: white;
     transition: 0.3s;
-    position: relative;
-    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
 }
 .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-
-.p-img {
-    height: 300px;
-    position: relative;
-    overflow: hidden;
-    background: #f0f0f0;
-}
+.p-img { height: 320px; position: relative; overflow: hidden; background: #f0f0f0; }
 .p-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.product-card:hover .p-img img { transform: scale(1.05); }
-
-.badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 5px 10px;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: bold;
-    z-index: 2;
-}
-.badge.sale { background: #D32F2F; }
-.badge.new { background: #388E3C; }
-.badge.hot { background: #F57C00; }
 
 .btn-add {
-    position: absolute;
-    bottom: -50px;
-    left: 0;
-    width: 100%;
-    background: var(--dark);
-    color: white;
-    border: none;
-    padding: 12px;
-    transition: 0.3s;
-    cursor: pointer;
+    position: absolute; bottom: -50px; left: 0; width: 100%;
+    background: var(--dark); color: white; border: none;
+    padding: 12px; transition: 0.3s; cursor: pointer;
 }
 .product-card:hover .btn-add { bottom: 0; }
 
-.p-info { padding: 15px; text-align: center; }
-.p-cat { font-size: 0.8rem; color: #999; margin-bottom: 5px; text-transform: uppercase; }
-.p-info h3 { font-size: 1.1rem; font-weight: 500; margin-bottom: 8px; }
-.p-price { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
-.p-price del { color: #ccc; font-size: 0.9rem; margin-left: 10px; font-weight: normal; }
+.p-info { padding: 20px; text-align: center; }
+.p-price { font-weight: bold; color: var(--primary); font-size: 1.2rem; }
 
-/* 7. ระบบ Visualizer เปลี่ยนสีโซฟา */
-.visualizer-container {
-    position: relative;
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: var(--shadow);
-    aspect-ratio: 4/3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.base-room {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-#sofaTint {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent; 
-    -webkit-mask-image: url('photo-1555041469-a586c61ea9bc-Photoroom.png');
-    mask-image: url('photo-1555041469-a586c61ea9bc-Photoroom.png');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mix-blend-mode: multiply; 
-    transition: background-color 0.4s ease;
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* ------------------------------------------------------- */
-/* CONTACT BUTTON SYSTEM - แก้ไขกรอบสีแดง */
-/* ------------------------------------------------------- */
-
+/* 6. Contact Button System (Fixed) */
 .floating-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
+    position: fixed; bottom: 20px; right: 20px; z-index: 2000;
+    display: flex; flex-direction: column; align-items: flex-end;
 }
 
 .line-bubble {
-    background-color: white;
-    color: #00B900;
-    font-weight: 900;
-    font-size: 1.2rem;
-    padding: 8px 20px;
-    border-radius: 50px;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    position: relative;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px) scale(0.8);
-    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    background: white; color: #00B900; font-weight: 900; padding: 8px 20px;
+    border-radius: 50px; margin-bottom: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-decoration: none; opacity: 0; visibility: hidden;
+    transform: translateY(10px); transition: 0.3s;
 }
+.line-bubble.show-bubble { opacity: 1; visibility: visible; transform: translateY(0); }
 
-.line-bubble.show-bubble {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) scale(1) !important;
-}
-
-.line-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    right: 30px;
-    border-width: 8px 8px 0;
-    border-style: solid;
-    border-color: white transparent transparent transparent;
-}
-
-.main-contact-btn {
-    position: relative;
-    display: flex;
-    flex-direction: column; /* ปรับให้เรียงกันแบบ column */
-    align-items: flex-end;
-}
-
-/* --- แก้ไขส่วนนี้: กรอบสีแดง ติดต่อ-สอบถาม --- */
 .red-badge {
-    background-color: #D32F2F;
-    color: white;
-    font-weight: bold;
-    font-size: 0.9rem;
-    line-height: 1.2;
-    padding: 10px 20px 10px 15px;
-    border-radius: 20px 20px 0 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    margin-right: 5px; /* ระยะห่างจากขอบขวา */
-    margin-bottom: -15px; /* ดันให้ลงมาทับส่วนไอคอนเล็กน้อย */
-    position: relative;
-    z-index: 10; /* ให้ลอยอยู่บนสุด */
+    background: #D32F2F; color: white; font-weight: bold; font-size: 0.85rem;
+    padding: 8px 15px; border-radius: 15px 15px 0 15px;
+    margin-bottom: -12px; margin-right: 5px; position: relative; z-index: 10;
 }
 
 .icon-circle {
-    width: 70px;
-    height: 70px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-    color: #D4A373;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 5;
-    border: 3px solid white;
-    animation: blink-shadow 3s infinite;
+    width: 65px; height: 65px; background: white; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 32px; color: var(--primary); border: 3px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-@keyframes blink-shadow {
-    0%, 100% { box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-    50% { box-shadow: 0 0 20px rgba(212, 163, 115, 0.6); }
-}
-
-/* ------------------------------------------------------- */
-/* MOBILE RESPONSIVE */
-/* ------------------------------------------------------- */
-
+/* ======================================================= */
+/* PROFESSIONAL MOBILE FIX */
+/* ======================================================= */
 @media (max-width: 768px) {
-    .header-content { flex-direction: row; flex-wrap: wrap; padding-bottom: 10px; }
-    .logo { order: 1; flex: 1; text-align: left; }
-    .user-actions { order: 2; justify-content: flex-end; }
-    .search-bar { order: 3; width: 100%; max-width: 100%; margin-top: 10px; }
+    .header-content { flex-direction: row; flex-wrap: wrap; }
+    .logo h2 { font-size: 1.3rem !important; }
+    .search-bar { order: 3; width: 100%; margin-top: 10px; }
     
-    .hero-full { height: 400px; background-position: 70% center; }
-    .hero-overlay { background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 100%); }
-    .hero-text { text-align: center; margin: 0 auto; }
-    .hero-text h1 { font-size: 2.2rem; }
-    
-    .relative-box { margin-top: 20px; }
-    .service-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
-    .service-item { flex-direction: column; border: none; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-    .service-item:last-child { border-bottom: none; }
+    .hero-full { height: 380px; background-position: center; }
+    .hero-text h1 { font-size: 2.2rem !important; }
+
+    .service-grid { 
+        grid-template-columns: 1fr; 
+        margin-top: 30px;
+        padding: 20px;
+    }
+    .service-item { 
+        border: none; border-bottom: 1px solid #eee; 
+        padding: 15px 0; justify-content: flex-start;
+    }
     
     .category-icons {
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 20px;
-        gap: 15px;
-        scrollbar-width: none;
+        justify-content: flex-start; overflow-x: auto; 
+        flex-wrap: nowrap; padding: 10px 0 30px; gap: 20px;
     }
     .category-icons::-webkit-scrollbar { display: none; }
-    .icon-item { flex: 0 0 auto; width: 80px; text-align: center; }
-    .img-circle { width: 65px; height: 65px; margin: 0 auto 10px; }
+    .icon-item { flex: 0 0 auto; width: 90px; }
+    .img-circle { width: 75px; height: 75px; }
 }
 
 @keyframes fadeUp {
