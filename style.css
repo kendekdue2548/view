@@ -1,13 +1,13 @@
 /* ======================================================= */
-/* THEME: Modern Earth & Minimal (2026 Style) */
+/* THEME: Modern Earth & Minimal (Full Balanced 2026) */
 /* ======================================================= */
 
 :root {
-    --primary: #8D7B68;       /* สีน้ำตาลหม่น */
-    --secondary: #C8B6A6;     /* สีครีมเบจ */
-    --accent: #A4907C;        /* สีทองด้าน */
-    --dark: #2C2C2C;          /* สีดำเทา */
-    --light: #FAF9F6;         /* สีขาวนวล (Off-white) */
+    --primary: #8D7B68;
+    --secondary: #C8B6A6;
+    --accent: #A4907C;
+    --dark: #2C2C2C;
+    --light: #FAF9F6;
     --white: #FFFFFF;
     --shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
@@ -19,18 +19,10 @@
     font-family: 'Kanit', sans-serif;
 }
 
-body {
-    background-color: var(--light);
-    color: var(--dark);
-}
+body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* 1. Header (Clean & Sticky) */
+/* 1. Header (Sticky & Glassmorphism) */
 .main-header {
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -40,486 +32,131 @@ body {
     z-index: 1000;
     box-shadow: 0 2px 20px rgba(0,0,0,0.05);
 }
+.header-content { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+.logo h2 { font-size: 1.8rem; font-weight: 600; letter-spacing: -1px; }
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
+.search-bar { flex-grow: 1; max-width: 500px; position: relative; }
+.search-bar input { 
+    width: 100%; padding: 12px 50px 12px 20px; border: 1px solid #eee; 
+    background: #f5f5f5; border-radius: 50px; outline: none; transition: 0.3s; 
+}
+.search-bar input:focus { background: white; border-color: var(--primary); }
+.search-bar button { 
+    position: absolute; right: 5px; top: 50%; transform: translateY(-50%); 
+    background: var(--primary); color: white; width: 35px; height: 35px; 
+    border-radius: 50%; border: none; cursor: pointer; 
 }
 
-.logo h2 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: -1px;
-    color: var(--dark);
-}
-
-.search-bar {
-    flex-grow: 1;
-    max-width: 500px;
-    position: relative;
-}
-
-.search-bar input {
-    width: 100%;
-    padding: 12px 50px 12px 20px;
-    border: 1px solid #eee;
-    background: #f5f5f5;
-    border-radius: 50px;
-    outline: none;
-    transition: 0.3s;
-}
-
-.search-bar input:focus {
-    background: white;
-    border-color: var(--primary);
-    box-shadow: 0 5px 15px rgba(141, 123, 104, 0.1);
-}
-
-.search-bar button {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--primary);
-    color: white;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-}
-
-.user-actions {
-    display: flex;
-    gap: 20px;
-}
-
-.icon-link {
-    color: var(--dark);
-    font-size: 1.4rem;
-    transition: 0.3s;
-}
+.user-actions { display: flex; gap: 20px; }
+.icon-link { color: var(--dark); font-size: 1.4rem; transition: 0.3s; }
 .icon-link:hover { color: var(--primary); transform: scale(1.1); }
 
 /* 2. Hero Section */
 .hero-full {
     height: 500px;
     background: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
-    position: relative;
     display: flex;
     align-items: center;
 }
+.hero-overlay { width: 100%; height: 100%; background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%); display: flex; align-items: center; }
+.hero-text { max-width: 500px; animation: fadeUp 1s ease; }
+.tag { display: inline-block; background: var(--dark); color: white; padding: 5px 10px; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 15px; }
+.hero-text h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; }
+.hero-text em { font-family: serif; font-style: italic; color: var(--primary); }
+.btn-primary { padding: 15px 40px; background: var(--primary); color: white; border: none; font-size: 1rem; cursor: pointer; transition: 0.3s; }
 
-.hero-overlay {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-    display: flex;
-    align-items: center;
+/* 3. SHOP BY CATEGORY (Desktop First) */
+.section-title { text-align: center; margin: 60px 0 40px; }
+.section-title h3 { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 10px; }
+.section-title .line { width: 60px; height: 3px; background-color: var(--primary); margin: 0 auto; border-radius: 50px; }
+
+.category-icons { display: flex; justify-content: center; gap: 40px; margin-bottom: 50px; flex-wrap: nowrap; }
+.icon-item { text-align: center; cursor: pointer; width: 150px; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+.img-circle {
+    width: 110px; height: 110px; border-radius: 50% !important; overflow: hidden; 
+    margin-bottom: 15px; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+.img-circle img { width: 100%; height: 100%; object-fit: cover; }
+.icon-item:hover .img-circle { border-color: var(--primary); transform: translateY(-5px); }
+.icon-item span { font-weight: 500; font-size: 1rem; color: #555; }
 
-.hero-text {
-    max-width: 500px;
-    animation: fadeUp 1s ease;
-}
-
-.tag {
-    display: inline-block;
-    background: var(--dark);
-    color: white;
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-}
-
-.hero-text h1 {
-    font-size: 3.5rem;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    color: var(--dark);
-}
-
-.hero-text em {
-    font-family: serif;
-    font-style: italic;
-    color: var(--primary);
-}
-
-.hero-text p {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 30px;
-}
-
-.btn-primary {
-    padding: 15px 40px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.btn-primary:hover { background: var(--dark); }
-
-/* 3. Service Box */
-.relative-box { position: relative; margin-top: -50px; z-index: 10; }
+/* 4. Service Grid */
+.relative-box { position: relative; margin-top: 20px; z-index: 10; margin-bottom: 60px; }
 .service-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    background: white;
-    box-shadow: var(--shadow);
-    padding: 30px;
-    border-radius: 4px;
+    display: grid; grid-template-columns: repeat(3, 1fr); 
+    background: white; box-shadow: var(--shadow); padding: 30px; border-radius: 4px;
 }
-
-.service-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 0 20px;
-    border-right: 1px solid #eee;
-}
+.service-item { display: flex; align-items: center; gap: 15px; padding: 0 20px; border-right: 1px solid #eee; }
 .service-item:last-child { border-right: none; }
 .service-item i { font-size: 2rem; color: var(--accent); }
 .service-item h3 { font-size: 1.1rem; margin-bottom: 3px; }
 .service-item p { font-size: 0.85rem; color: #888; }
 
-/* --- ส่วนดึงเส้นขีดใต้ SHOP BY CATEGORY กลับมา --- */
-.section-title {
-    text-align: center;
-    margin: 60px 0 40px; /* เว้นระยะห่างบนล่างให้สมดุล */
-}
-
-.section-title h3 {
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    color: var(--dark);
-}
-
-.section-title .line {
-    width: 60px;          /* ความกว้างของเส้น */
-    height: 3px;          /* ความหนาของเส้น */
-    background-color: #8D7B68; /* สีน้ำตาลตามธีมหลัก */
-    margin: 0 auto;       /* จัดให้อยู่กึ่งกลาง */
-    border-radius: 50px;  /* ปลายเส้นมนสวยงาม */
-}
-
-.category-icons {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 50px; /* เพิ่มระยะห่างด้านล่างก่อนถึงแถบ Service */
-    flex-wrap: wrap;
-}
-
-/* --- 2. แก้ปัญหาแถบ Service Grid ทับส่วนอื่น --- */
-.relative-box { 
-    position: relative; 
-    margin-top: 20px; /* เปลี่ยนจาก -50px เป็น 20px เพื่อไม่ให้ลอยทับหมวดหมู่สินค้า */
-    z-index: 10; 
-    margin-bottom: 60px; /* เว้นระยะก่อนถึงรายการสินค้าด้านล่าง */
-}
-
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    background: white;
-    box-shadow: var(--shadow);
-    padding: 30px;
-    border-radius: 4px;
-}
-
-/* --- 3. ปรับขนาดรูปวงกลมให้สมดุล (ตามรูปต้นฉบับ) --- */
-.img-circle {
-    width: 110px; /* เพิ่มขนาดจาก 100px เป็น 110px ให้ดูเด่นชัด */
-    height: 110px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 15px;
-    border: 4px solid white; /* เพิ่มขอบขาวให้ดูมีมิติ */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.img-circle img { width: 100%; height: 100%; object-fit: cover; }
-.icon-item:hover .img-circle { border-color: var(--primary); }
-.icon-item span { font-weight: 500; font-size: 1rem; color: #555; }
-
-/* 5. Flash Sale (ถูกลบออกตามคำขอในหน้า HTML) */
-/* หมายเหตุ: ไม่ต้องลบ CSS ส่วนนี้ทิ้งก็ได้หากยังต้องการเก็บสไตล์ไว้ */
-
-/* 6. Product Cards */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 30px;
-}
-
-.product-card {
-    background: white;
-    transition: 0.3s;
-    position: relative;
-    cursor: pointer;
-}
+/* 5. Product Grid */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding-bottom: 80px; }
+.product-card { background: white; transition: 0.3s; position: relative; cursor: pointer; }
 .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-
-.p-img {
-    height: 300px;
-    position: relative;
-    overflow: hidden;
-    background: #f0f0f0;
-}
+.p-img { height: 300px; position: relative; overflow: hidden; background: #f0f0f0; }
 .p-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.product-card:hover .p-img img { transform: scale(1.05); }
-
-.badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 5px 10px;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: bold;
-    z-index: 2;
-}
-.badge.sale { background: #D32F2F; }
+.badge { position: absolute; top: 10px; left: 10px; padding: 5px 10px; color: white; font-size: 0.7rem; font-weight: bold; z-index: 2; }
 .badge.new { background: #388E3C; }
 .badge.hot { background: #F57C00; }
-
 .btn-add {
-    position: absolute;
-    bottom: -50px;
-    left: 0;
-    width: 100%;
-    background: var(--dark);
-    color: white;
-    border: none;
-    padding: 12px;
-    transition: 0.3s;
-    cursor: pointer;
+    position: absolute; bottom: -50px; left: 0; width: 100%; background: var(--dark); 
+    color: white; border: none; padding: 12px; transition: 0.3s;
 }
 .product-card:hover .btn-add { bottom: 0; }
-
 .p-info { padding: 15px; text-align: center; }
 .p-cat { font-size: 0.8rem; color: #999; margin-bottom: 5px; text-transform: uppercase; }
-.p-info h3 { font-size: 1.1rem; font-weight: 500; margin-bottom: 8px; }
 .p-price { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
-.p-price del { color: #ccc; font-size: 0.9rem; margin-left: 10px; font-weight: normal; }
 
-/* 7. ระบบ Visualizer เปลี่ยนสีโซฟา */
-.visualizer-container {
-    position: relative;
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: var(--shadow);
-    aspect-ratio: 4/3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.base-room {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-#sofaTint {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent; 
-    -webkit-mask-image: url('photo-1555041469-a586c61ea9bc-Photoroom.png');
-    mask-image: url('photo-1555041469-a586c61ea9bc-Photoroom.png');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mix-blend-mode: multiply; 
-    transition: background-color 0.4s ease;
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* ------------------------------------------------------- */
-/* CONTACT BUTTON SYSTEM - แก้ไขกรอบสีแดง */
-/* ------------------------------------------------------- */
-
-.floating-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-}
-
+/* 6. Contact Button System (Fixed Red Badge) */
+.floating-container { position: fixed; bottom: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; align-items: flex-end; cursor: pointer; }
 .line-bubble {
-    background-color: white;
-    color: #00B900;
-    font-weight: 900;
-    font-size: 1.2rem;
-    padding: 8px 20px;
-    border-radius: 50px;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    position: relative;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px) scale(0.8);
-    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    background-color: white; color: #00B900; font-weight: 900; padding: 8px 20px; 
+    border-radius: 50px; margin-bottom: 5px; margin-right: 10px; box-shadow: var(--shadow);
+    text-decoration: none; opacity: 0; visibility: hidden; transform: translateY(10px); transition: 0.3s;
 }
-
-.line-bubble.show-bubble {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) scale(1) !important;
-}
-
-.line-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    right: 30px;
-    border-width: 8px 8px 0;
-    border-style: solid;
-    border-color: white transparent transparent transparent;
-}
-
-.main-contact-btn {
-    position: relative;
-    display: flex;
-    flex-direction: column; /* ปรับให้เรียงกันแบบ column */
-    align-items: flex-end;
-}
-
-/* --- แก้ไขส่วนนี้: กรอบสีแดง ติดต่อ-สอบถาม --- */
+.line-bubble.show-bubble { opacity: 1; visibility: visible; transform: translateY(0); }
 .red-badge {
-    background-color: #D32F2F;
-    color: white;
-    font-weight: bold;
-    font-size: 0.9rem;
-    line-height: 1.2;
-    padding: 10px 20px 10px 15px;
-    border-radius: 20px 20px 0 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    margin-right: 5px; /* ระยะห่างจากขอบขวา */
-    margin-bottom: -15px; /* ดันให้ลงมาทับส่วนไอคอนเล็กน้อย */
-    position: relative;
-    z-index: 10; /* ให้ลอยอยู่บนสุด */
+    background-color: #D32F2F; color: white; font-weight: bold; font-size: 0.9rem;
+    padding: 10px 20px; border-radius: 20px 20px 0 20px; margin-bottom: -15px; margin-right: 5px;
+    position: relative; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-
 .icon-circle {
-    width: 70px;
-    height: 70px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-    color: #D4A373;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 5;
-    border: 3px solid white;
-    animation: blink-shadow 3s infinite;
+    width: 70px; height: 70px; background-color: white; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; font-size: 35px;
+    color: #D4A373; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 3px solid white;
 }
 
-@keyframes blink-shadow {
-    0%, 100% { box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-    50% { box-shadow: 0 0 20px rgba(212, 163, 115, 0.6); }
+/* ======================================================= */
+/* RESPONSIVE DESIGN (iPad & Mobile) */
+/* ======================================================= */
+
+/* iPad/Tablet */
+@media (max-width: 1024px) {
+    .category-icons { gap: 30px; }
+    .img-circle { width: 95px; height: 95px; }
 }
 
-/* ------------------------------------------------------- */
-/* MOBILE RESPONSIVE */
-/* ------------------------------------------------------- */
-
+/* Mobile (2x2 Grid Categories) */
 @media (max-width: 768px) {
-    /* ส่วน Header และ Hero คงเดิมตามโค้ดต้นฉบับของคุณ */
-    .header-content { flex-direction: row; flex-wrap: wrap; padding-bottom: 10px; }
-    .logo { order: 1; flex: 1; text-align: left; }
-    .user-actions { order: 2; justify-content: flex-end; }
-    .search-bar { order: 3; width: 100%; max-width: 100%; margin-top: 10px; }
-    
-    .hero-full { height: 400px; background-position: 70% center; }
-    .hero-overlay { background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 100%); }
-    .hero-text { text-align: center; margin: 0 auto; }
+    .header-content { flex-direction: row; flex-wrap: wrap; }
+    .search-bar { order: 3; width: 100%; margin-top: 10px; }
     .hero-text h1 { font-size: 2.2rem; }
 
-    /* --- แก้ไขส่วน SHOP BY CATEGORY ให้โชว์ครบ 4 อัน ไม่ต้องเลื่อน --- */
+    /* Category: 2x2 Grid No Scroll */
     .category-icons {
-        display: grid; /* เปลี่ยนจาก flex เป็น grid */
-        grid-template-columns: repeat(2, 1fr); /* แบ่งเป็น 2 คอลัมน์เท่าๆ กัน */
-        gap: 20px; /* ระยะห่างระหว่างไอเทม */
-        overflow-x: hidden; /* ปิดการเลื่อนแนวนอน */
-        padding: 20px 10px;
-        justify-items: center; /* จัดให้อยู่กึ่งกลางแต่ละช่อง */
+        display: grid; grid-template-columns: repeat(2, 1fr); 
+        gap: 20px 10px; overflow-x: hidden; padding: 20px 0;
     }
+    .icon-item { width: 100%; flex: none; align-items: center; }
+    .img-circle { width: 80px !important; height: 80px !important; border-radius: 50% !important; margin-bottom: 8px; }
+    .icon-item span { font-size: 0.85rem; white-space: normal; }
 
-    .icon-item {
-        width: 100%; /* ให้ยืดเต็มช่อง grid */
-        text-align: center;
-        flex: none; /* ยกเลิกค่า flex เดิม */
-    }
-
-    .img-circle {
-        width: 85px; /* ปรับขนาดวงกลมให้พอดีกับ 2 คอลัมน์ */
-        height: 85px;
-        margin: 0 auto 10px;
-        border-radius: 50% !important; /* บังคับให้เป็นวงกลม */
-    }
-
-    .icon-item span {
-        font-size: 0.9rem;
-        display: block;
-        white-space: normal; /* ยอมให้เว้นวรรคได้ถ้าชื่อยาว */
-    }
-
-    /* ปรับระยะห่างแถบ Service ไม่ให้ชิดหมวดหมู่เกินไป */
-    .relative-box { 
-        margin-top: 20px !important; 
-    }
-    
-    .service-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
-    .service-item { flex-direction: column; border: none; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-    .service-item:last-child { border-bottom: none; }
-}
-    
-    .category-icons {
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 20px;
-        gap: 15px;
-        scrollbar-width: none;
-    }
-    .category-icons::-webkit-scrollbar { display: none; }
-    .icon-item { flex: 0 0 auto; width: 80px; text-align: center; }
-    .img-circle { width: 65px; height: 65px; margin: 0 auto 10px; }
+    .relative-box { margin-top: 20px !important; }
+    .service-grid { grid-template-columns: 1fr; gap: 20px; }
+    .service-item { flex-direction: column; border-right: none; border-bottom: 1px solid #eee; padding: 15px 0; }
 }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
