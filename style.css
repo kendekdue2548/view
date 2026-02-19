@@ -489,14 +489,15 @@ body {
     .service-item:last-child { border-bottom: none; }
     
     .category-icons {
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding: 20px 0; /* เพิ่มระยะบนล่างให้วงกลมไม่ติดหัวข้อ */
-        gap: 15px;
-        scrollbar-width: none;
-    }
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 20px 15px; /* เพิ่มพื้นที่ด้านข้างให้รูปแรกไม่ชิดขอบจอเกินไป */
+    gap: 25px; /* เพิ่มระยะห่างระหว่างแต่ละหมวดหมู่ */
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
     .category-icons::-webkit-scrollbar { display: none; }
     .icon-item { flex: 0 0 auto; width: 85px; text-align: center; }
     .img-circle { width: 70px; height: 70px; margin: 0 auto 10px; }
