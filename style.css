@@ -236,14 +236,17 @@ body {
 }
 
 /* --- 3. ปรับขนาดรูปวงกลมให้สมดุล (ตามรูปต้นฉบับ) --- */
-.img-circle {
-    width: 110px; /* เพิ่มขนาดจาก 100px เป็น 110px ให้ดูเด่นชัด */
-    height: 110px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 15px;
-    border: 4px solid white; /* เพิ่มขอบขาวให้ดูมีมิติ */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.img-circle { 
+    width: 75px; 
+    height: 75px; 
+    margin: 0 auto 10px; 
+}
+
+.icon-item span {
+    font-size: 0.85rem;
+    white-space: nowrap; /* ป้องกันตัวหนังสือตกบรรทัดจนเบี้ยว */
+    display: block;
+    width: 100%;
 }
 
 .img-circle img { width: 100%; height: 100%; object-fit: cover; }
