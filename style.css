@@ -452,7 +452,7 @@ body {
 }
 
 /* ------------------------------------------------------- */
-/* MOBILE RESPONSIVE */
+/* MOBILE RESPONSIVE - แก้ไขส่วนที่ติดกันในมือถือ */
 /* ------------------------------------------------------- */
 
 @media (max-width: 768px) {
@@ -466,9 +466,26 @@ body {
     .hero-text { text-align: center; margin: 0 auto; }
     .hero-text h1 { font-size: 2.2rem; }
     
-    .relative-box { margin-top: 20px; }
-    .service-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
-    .service-item { flex-direction: column; border: none; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+    /* --- แก้ไขจุดนี้: ยกเลิกการติดกันในมือถือ --- */
+    .relative-box { 
+        margin-top: 30px !important; /* เปลี่ยนจาก -50px เป็น 30px เพื่อให้แยกออกจากส่วนบน */
+        position: relative;
+        z-index: 10;
+    }
+    
+    .service-grid { 
+        grid-template-columns: 1fr; 
+        gap: 20px; 
+        text-align: center; 
+        padding: 20px; /* เพิ่มพื้นที่ข้างในไม่ให้ตัวหนังสือชิดขอบ */
+    }
+
+    .service-item { 
+        flex-direction: column; 
+        border: none; 
+        border-bottom: 1px solid #eee; 
+        padding-bottom: 15px; 
+    }
     .service-item:last-child { border-bottom: none; }
     
     .category-icons {
@@ -476,13 +493,13 @@ body {
         justify-content: flex-start;
         flex-wrap: nowrap;
         overflow-x: auto;
-        padding-bottom: 20px;
+        padding: 20px 0; /* เพิ่มระยะบนล่างให้วงกลมไม่ติดหัวข้อ */
         gap: 15px;
         scrollbar-width: none;
     }
     .category-icons::-webkit-scrollbar { display: none; }
-    .icon-item { flex: 0 0 auto; width: 80px; text-align: center; }
-    .img-circle { width: 65px; height: 65px; margin: 0 auto 10px; }
+    .icon-item { flex: 0 0 auto; width: 85px; text-align: center; }
+    .img-circle { width: 70px; height: 70px; margin: 0 auto 10px; }
 }
 
 @keyframes fadeUp {
