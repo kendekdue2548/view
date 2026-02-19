@@ -188,48 +188,48 @@ body {
 .service-item h3 { font-size: 1.1rem; margin-bottom: 3px; }
 .service-item p { font-size: 0.85rem; color: #888; }
 
-/* 4. Categories */
+/* --- 1. ปรับระยะห่างส่วนหมวดหมู่สินค้าให้กว้างขึ้น --- */
 .section-title {
     text-align: center;
-    margin: 60px 0 40px;
-}
-.section-title h3 {
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-.section-title .line {
-    width: 50px;
-    height: 3px;
-    background: var(--primary);
-    margin: 0 auto;
+    margin: 80px 0 40px; /* เพิ่ม margin-top เป็น 80px เพื่อไม่ให้ติดกับ Banner */
 }
 
 .category-icons {
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin-bottom: 60px;
+    margin-bottom: 50px; /* เพิ่มระยะห่างด้านล่างก่อนถึงแถบ Service */
     flex-wrap: wrap;
 }
 
-.icon-item {
-    text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
+/* --- 2. แก้ปัญหาแถบ Service Grid ทับส่วนอื่น --- */
+.relative-box { 
+    position: relative; 
+    margin-top: 20px; /* เปลี่ยนจาก -50px เป็น 20px เพื่อไม่ให้ลอยทับหมวดหมู่สินค้า */
+    z-index: 10; 
+    margin-bottom: 60px; /* เว้นระยะก่อนถึงรายการสินค้าด้านล่าง */
 }
-.icon-item:hover { transform: translateY(-10px); }
 
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: white;
+    box-shadow: var(--shadow);
+    padding: 30px;
+    border-radius: 4px;
+}
+
+/* --- 3. ปรับขนาดรูปวงกลมให้สมดุล (ตามรูปต้นฉบับ) --- */
 .img-circle {
-    width: 100px;
-    height: 100px;
+    width: 110px; /* เพิ่มขนาดจาก 100px เป็น 110px ให้ดูเด่นชัด */
+    height: 110px;
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 15px;
-    border: 3px solid transparent;
-    transition: 0.3s;
+    border: 4px solid white; /* เพิ่มขอบขาวให้ดูมีมิติ */
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+
 .img-circle img { width: 100%; height: 100%; object-fit: cover; }
 .icon-item:hover .img-circle { border-color: var(--primary); }
 .icon-item span { font-weight: 500; font-size: 1rem; color: #555; }
