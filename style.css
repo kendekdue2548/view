@@ -455,6 +455,7 @@ body {
 /* ------------------------------------------------------- */
 
 @media (max-width: 768px) {
+    /* ส่วน Header และ Hero คงเดิมตามโค้ดต้นฉบับของคุณ */
     .header-content { flex-direction: row; flex-wrap: wrap; padding-bottom: 10px; }
     .logo { order: 1; flex: 1; text-align: left; }
     .user-actions { order: 2; justify-content: flex-end; }
@@ -464,11 +465,45 @@ body {
     .hero-overlay { background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 100%); }
     .hero-text { text-align: center; margin: 0 auto; }
     .hero-text h1 { font-size: 2.2rem; }
+
+    /* --- แก้ไขส่วน SHOP BY CATEGORY ให้โชว์ครบ 4 อัน ไม่ต้องเลื่อน --- */
+    .category-icons {
+        display: grid; /* เปลี่ยนจาก flex เป็น grid */
+        grid-template-columns: repeat(2, 1fr); /* แบ่งเป็น 2 คอลัมน์เท่าๆ กัน */
+        gap: 20px; /* ระยะห่างระหว่างไอเทม */
+        overflow-x: hidden; /* ปิดการเลื่อนแนวนอน */
+        padding: 20px 10px;
+        justify-items: center; /* จัดให้อยู่กึ่งกลางแต่ละช่อง */
+    }
+
+    .icon-item {
+        width: 100%; /* ให้ยืดเต็มช่อง grid */
+        text-align: center;
+        flex: none; /* ยกเลิกค่า flex เดิม */
+    }
+
+    .img-circle {
+        width: 85px; /* ปรับขนาดวงกลมให้พอดีกับ 2 คอลัมน์ */
+        height: 85px;
+        margin: 0 auto 10px;
+        border-radius: 50% !important; /* บังคับให้เป็นวงกลม */
+    }
+
+    .icon-item span {
+        font-size: 0.9rem;
+        display: block;
+        white-space: normal; /* ยอมให้เว้นวรรคได้ถ้าชื่อยาว */
+    }
+
+    /* ปรับระยะห่างแถบ Service ไม่ให้ชิดหมวดหมู่เกินไป */
+    .relative-box { 
+        margin-top: 20px !important; 
+    }
     
-    .relative-box { margin-top: 20px; }
     .service-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
     .service-item { flex-direction: column; border: none; border-bottom: 1px solid #eee; padding-bottom: 15px; }
     .service-item:last-child { border-bottom: none; }
+}
     
     .category-icons {
         display: flex;
