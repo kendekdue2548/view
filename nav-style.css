@@ -1,1 +1,81 @@
+/* --- ส่วนแถบเมนูด้านล่าง (Bottom Navigation) --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    box-shadow: 0 -2px 15px rgba(0,0,0,0.08);
+    z-index: 3000; /* ให้ลอยอยู่บนสุดเสมอ */
+}
 
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #888;
+    font-size: 0.7rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-item i { font-size: 1.3rem; margin-bottom: 4px; }
+.nav-item.active { color: #8D7B68; } /* สีน้ำตาลตามธีม Me Sofa */
+
+/* --- ส่วนเมนูที่เด้งขึ้นมา (Shop Overlay) --- */
+.shop-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    z-index: 3001;
+    display: none; 
+    align-items: flex-end;
+}
+
+.shop-menu-content {
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 25px 25px 0 0;
+    padding-bottom: 40px;
+    animation: slideInUp 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.menu-list { list-style: none; padding: 0; margin: 0; }
+.menu-list li {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid #F9F9F9;
+}
+
+.menu-list li img { 
+    width: 55px; height: 55px; border-radius: 12px; 
+    object-fit: cover; margin-right: 18px; 
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* --- ปิดปุ่ม Line เดิมในมือถือเพื่อไม่ให้ทับกัน --- */
+@media (max-width: 768px) {
+    .floating-container { display: none !important; }
+}
