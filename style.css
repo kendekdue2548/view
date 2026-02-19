@@ -98,19 +98,10 @@ body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
 .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
 .p-img { height: 300px; position: relative; overflow: hidden; background: #f0f0f0; }
 .p-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.badge { position: absolute; top: 10px; left: 10px; padding: 5px 10px; color: white; font-size: 0.7rem; font-weight: bold; z-index: 2; }
-.badge.new { background: #388E3C; }
-.badge.hot { background: #F57C00; }
-.btn-add {
-    position: absolute; bottom: -50px; left: 0; width: 100%; background: var(--dark); 
-    color: white; border: none; padding: 12px; transition: 0.3s;
-}
-.product-card:hover .btn-add { bottom: 0; }
 .p-info { padding: 15px; text-align: center; }
-.p-cat { font-size: 0.8rem; color: #999; margin-bottom: 5px; text-transform: uppercase; }
 .p-price { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
 
-/* 6. Contact Button System (Fixed Red Badge) */
+/* 6. Contact Button System */
 .floating-container { position: fixed; bottom: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; align-items: flex-end; cursor: pointer; }
 .line-bubble {
     background-color: white; color: #00B900; font-weight: 900; padding: 8px 20px; 
@@ -139,24 +130,48 @@ body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
     .img-circle { width: 95px; height: 95px; }
 }
 
-/* Mobile (2x2 Grid Categories) */
+/* Mobile (Balanced Layout) */
 @media (max-width: 768px) {
+    /* 1. Hero Banner: จัดกึ่งกลางให้สมดุล */
+    .hero-full { 
+        height: 450px; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .hero-overlay { justify-content: center; background: rgba(255,255,255,0.4); }
+    .hero-text { padding: 0 20px; width: 100%; }
+    .hero-text h1 { font-size: 2.2rem !important; margin-bottom: 15px; }
+    .hero-text p { font-size: 1rem; margin-bottom: 25px; }
+    .btn-primary { padding: 12px 30px; width: auto; display: inline-flex; }
+
+    /* 2. Category: 4 อันในแถวเดียว (รูปที่ 1) */
+    .category-icons {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        justify-content: space-between;
+        gap: 5px;
+        padding: 20px 10px;
+        overflow-x: hidden;
+    }
+    .icon-item { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; }
+    .img-circle {
+        width: 65px !important;
+        height: 65px !important;
+        border-radius: 50% !important;
+        margin-bottom: 8px;
+        border: 2px solid white;
+    }
+    .icon-item span { font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+
+    /* 3. Header & Service */
     .header-content { flex-direction: row; flex-wrap: wrap; }
     .search-bar { order: 3; width: 100%; margin-top: 10px; }
-    .hero-text h1 { font-size: 2.2rem; }
-
-    /* Category: 2x2 Grid No Scroll */
-    .category-icons {
-        display: grid; grid-template-columns: repeat(2, 1fr); 
-        gap: 20px 10px; overflow-x: hidden; padding: 20px 0;
-    }
-    .icon-item { width: 100%; flex: none; align-items: center; }
-    .img-circle { width: 80px !important; height: 80px !important; border-radius: 50% !important; margin-bottom: 8px; }
-    .icon-item span { font-size: 0.85rem; white-space: normal; }
-
-    .relative-box { margin-top: 20px !important; }
-    .service-grid { grid-template-columns: 1fr; gap: 20px; }
+    .relative-box { margin-top: 10px !important; padding: 0 10px; }
+    .service-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
     .service-item { flex-direction: column; border-right: none; border-bottom: 1px solid #eee; padding: 15px 0; }
+    .service-item:last-child { border-bottom: none; }
 }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
