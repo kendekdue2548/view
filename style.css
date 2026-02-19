@@ -1,5 +1,5 @@
 /* ======================================================= */
-/* THEME: Modern Earth & Minimal (Balanced Layout) */
+/* THEME: Modern Earth & Minimal (Perfect Balance 2026) */
 /* ======================================================= */
 
 :root {
@@ -11,8 +11,8 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
-body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+body { background-color: var(--light); color: var(--dark); overflow-x: hidden; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; }
 
 /* 1. Header & Hero */
 .main-header {
@@ -24,44 +24,47 @@ body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
     z-index: 1000;
     box-shadow: 0 2px 15px rgba(0,0,0,0.05);
 }
-
-.header-content { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+.header-content { display: flex; justify-content: space-between; align-items: center; }
 .logo h2 { font-size: 1.6rem; font-weight: 600; letter-spacing: -1px; }
 
-.search-bar { flex-grow: 1; max-width: 500px; position: relative; }
-.search-bar input { width: 100%; padding: 10px 45px 10px 20px; border: 1px solid #eee; background: #f8f8f8; border-radius: 50px; outline: none; }
-.search-bar button { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; border: none; cursor: pointer; }
-
-/* 2. Hero Section */
 .hero-full {
-    height: 550px;
+    height: 500px;
     background: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
-    display: flex;
-    align-items: center;
 }
-
-.hero-overlay { width: 100%; height: 100%; background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.2) 100%); display: flex; align-items: center; }
-.hero-text { max-width: 550px; }
-.tag { display: inline-block; background: var(--dark); color: white; padding: 4px 12px; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 15px; }
-.hero-text h1 { font-size: 3.8rem; line-height: 1.1; margin-bottom: 20px; }
+.hero-overlay { width: 100%; height: 100%; background: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%); display: flex; align-items: center; }
+.hero-text { max-width: 500px; padding: 40px; }
+.hero-text h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; }
 .hero-text em { font-family: serif; font-style: italic; color: var(--primary); }
-.btn-primary { padding: 14px 35px; background: var(--primary); color: white; border: none; font-size: 1rem; cursor: pointer; border-radius: 4px; transition: 0.3s; }
 
-/* 3. Shop By Category (ย้ายขึ้นมาและจัดระยะให้โปร่ง) */
-.category-section { padding: 80px 0 40px; text-align: center; }
-.section-title h3 { font-size: 1.4rem; letter-spacing: 2px; margin-bottom: 15px; }
-.section-title .line { width: 40px; height: 3px; background: var(--primary); margin: 0 auto 40px; }
+/* 2. Shop By Category (Section แรกหลัง Banner) */
+.category-section { 
+    padding: 80px 0 30px; /* เว้นระยะห่างบน-ล่างให้โปร่ง */
+    text-align: center; 
+}
+.section-title h3 { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 10px; }
+.section-title .line { width: 50px; height: 3px; background: var(--primary); margin: 0 auto 40px; }
 
-.category-icons { display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; }
+.category-icons { 
+    display: flex; 
+    justify-content: center; 
+    gap: 50px; /* เว้นระยะห่างระหว่างวงกลมให้สมดุล */
+    margin-bottom: 20px;
+}
 .icon-item { text-align: center; cursor: pointer; transition: 0.3s; width: 120px; }
-.img-circle { width: 110px; height: 110px; border-radius: 50%; overflow: hidden; margin: 0 auto 15px; border: 4px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.06); transition: 0.3s; }
+.img-circle { 
+    width: 120px; height: 120px; /* ล็อคขนาดวงกลมให้เท่ากันทุกรูป */
+    border-radius: 50%; overflow: hidden; 
+    margin: 0 auto 15px; border: 4px solid white; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+}
 .img-circle img { width: 100%; height: 100%; object-fit: cover; }
-.icon-item:hover { transform: translateY(-8px); }
-.icon-item:hover .img-circle { border-color: var(--primary); }
-.icon-item span { font-weight: 500; color: #555; font-size: 0.95rem; }
+.icon-item span { font-weight: 500; font-size: 1rem; color: #555; }
 
-/* 4. Service Grid (จัดให้อยู่กึ่งกลางสัดส่วน) */
-.service-container { margin: 20px 0 60px; }
+/* 3. Service Grid (แถบบริการที่ต้องการให้อยู่กึ่งกลาง) */
+.relative-box { 
+    margin: 40px auto 60px; /* ปรับ Margin ให้ไม่ไปทับ Category หรือ Product */
+    width: 100%;
+}
 .service-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -70,43 +73,48 @@ body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
     border-radius: 8px;
     box-shadow: var(--shadow);
 }
-
-.service-item { display: flex; align-items: center; gap: 15px; padding: 0 25px; border-right: 1px solid #f0f0f0; }
+.service-item { 
+    display: flex; align-items: center; gap: 15px; 
+    padding: 0 30px; border-right: 1px solid #f0f0f0; 
+}
 .service-item:last-child { border-right: none; }
-.service-item i { font-size: 1.8rem; color: var(--primary); opacity: 0.7; }
-.service-item h3 { font-size: 1.05rem; margin-bottom: 2px; }
-.service-item p { font-size: 0.8rem; color: #999; }
+.service-item i { font-size: 2rem; color: var(--primary); opacity: 0.8; }
+.service-item h3 { font-size: 1.1rem; margin-bottom: 4px; }
+.service-item p { font-size: 0.85rem; color: #888; }
 
-/* 5. Product Grid */
-.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; padding-bottom: 80px; }
-.product-card { background: white; border-radius: 12px; overflow: hidden; transition: 0.3s; text-align: center; }
-.product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-.p-img { height: 350px; position: relative; overflow: hidden; }
+/* 4. Product Grid */
+.product-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 40px; 
+    padding: 20px 0 100px;
+}
+.product-card { background: white; border-radius: 12px; overflow: hidden; transition: 0.3s; }
+.product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
+.p-img { height: 380px; width: 100%; }
 .p-img img { width: 100%; height: 100%; object-fit: cover; }
-.p-info { padding: 20px; }
-.p-info h3 { font-size: 1.1rem; margin-bottom: 10px; }
-.p-price { font-weight: bold; color: var(--primary); font-size: 1.2rem; }
+.p-info { padding: 25px; text-align: center; }
+.p-info h3 { font-size: 1.2rem; margin-bottom: 12px; }
+.p-price { font-weight: bold; color: var(--primary); font-size: 1.3rem; }
 
-/* 6. Floating Contact */
+/* 5. Contact Button */
 .floating-container { position: fixed; bottom: 25px; right: 25px; z-index: 2000; display: flex; flex-direction: column; align-items: flex-end; }
-.red-badge { background: #D32F2F; color: white; padding: 8px 15px; border-radius: 15px 15px 0 15px; margin-bottom: -10px; margin-right: 5px; position: relative; z-index: 10; font-size: 0.8rem; font-weight: bold; }
-.icon-circle { width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid white; }
+.red-badge { background: #D32F2F; color: white; padding: 8px 18px; border-radius: 20px 20px 0 20px; margin-bottom: -12px; margin-right: 5px; position: relative; z-index: 10; font-size: 0.85rem; font-weight: bold; }
+.icon-circle { width: 65px; height: 65px; background: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 32px; color: var(--primary); box-shadow: 0 5px 20px rgba(0,0,0,0.15); border: 3px solid white; }
 
 /* ======================================================= */
-/* MOBILE RESPONSIVE: ปรับสัดส่วนให้สมดุลบนมือถือ */
+/* MOBILE FIX: จบปัญหามือถือสัดส่วนมั่ว */
 /* ======================================================= */
 @media (max-width: 768px) {
-    .header-content { gap: 10px; }
-    .logo h2 { font-size: 1.2rem; }
     .hero-full { height: 400px; }
-    .hero-text h1 { font-size: 2.2rem; }
+    .hero-text h1 { font-size: 2.5rem; }
 
-    .category-icons { gap: 15px; overflow-x: auto; justify-content: flex-start; padding: 10px 20px 30px; }
+    .category-icons { gap: 20px; overflow-x: auto; justify-content: flex-start; padding: 0 10px 30px; }
     .category-icons::-webkit-scrollbar { display: none; }
-    .icon-item { flex: 0 0 auto; width: 90px; }
-    .img-circle { width: 75px; height: 75px; }
+    .icon-item { flex: 0 0 auto; width: 100px; }
+    .img-circle { width: 85px; height: 85px; }
 
-    .service-grid { grid-template-columns: 1fr; gap: 20px; padding: 25px; }
-    .service-item { border-right: none; border-bottom: 1px solid #eee; padding: 0 0 15px 0; }
+    .service-grid { grid-template-columns: 1fr; gap: 25px; padding: 25px; }
+    .service-item { border-right: none; border-bottom: 1px solid #eee; padding: 0 0 20px 0; }
     .service-item:last-child { border-bottom: none; }
 }
