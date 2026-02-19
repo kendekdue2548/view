@@ -459,22 +459,57 @@ body {
 /* ------------------------------------------------------- */
 
 @media (max-width: 768px) {
-    .header-content { flex-direction: row; flex-wrap: wrap; padding-bottom: 10px; }
-    .logo { order: 1; flex: 1; text-align: left; }
-    .user-actions { order: 2; justify-content: flex-end; }
-    .search-bar { order: 3; width: 100%; max-width: 100%; margin-top: 10px; }
-    
-    .hero-full { height: 400px; background-position: 70% center; }
-    .hero-overlay { background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 100%); }
-    .hero-text { text-align: center; margin: 0 auto; }
-    .hero-text h1 { font-size: 2.2rem; }
-    
-    /* --- แก้ไขจุดนี้: ยกเลิกการติดกันในมือถือ --- */
-    .relative-box { 
-        margin-top: 30px !important; /* เปลี่ยนจาก -50px เป็น 30px เพื่อให้แยกออกจากส่วนบน */
-        position: relative;
-        z-index: 10;
+    /* จัดระเบียบการเรียงตัวของหมวดหมู่ */
+    .category-icons {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 20px 15px;
+        gap: 20px; /* ระยะห่างระหว่างวงกลม */
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
     }
+
+    /* ล็อคตำแหน่งตัวหนังสือให้ตรงกึ่งกลางรูป */
+    .icon-item {
+        flex: 0 0 100px; /* ล็อคความกว้างช่องละ 100px */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* จัดรูปและข้อความให้อยู่แนวกึ่งกลางเดียวกัน */
+        text-align: center;
+    }
+
+    /* ดึงรูปทรงวงกลมกลับมา */
+    .img-circle {
+        width: 80px;  /* ขนาดวงกลมในมือถือ */
+        height: 80px;
+        border-radius: 50% !important; /* บังคับให้เป็นวงกลม 100% */
+        overflow: hidden;
+        margin-bottom: 10px;
+        border: 3px solid white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .img-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .icon-item span {
+        font-size: 0.85rem;
+        font-weight: 500;
+        white-space: nowrap; /* ป้องกัน Dining Room ตกบรรทัดจนเบี้ยว */
+        display: block;
+        width: 100%;
+    }
+
+    /* แก้ไขส่วน Service Grid ไม่ให้ทับกัน */
+    .relative-box { 
+        margin-top: 40px !important; 
+    }
+}
     
     .service-grid { 
         grid-template-columns: 1fr; 
