@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Me Sofa Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-form { max-width: 500px; margin: 50px auto; padding: 30px; background: white; border-radius: 10px; box-shadow: var(--shadow); }
+        .admin-form input, .admin-form button { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ddd; }
+        .admin-form button { background: var(--primary); color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="admin-form" id="loginSection">
+        <h3>Admin Login</h3>
+        <input type="password" id="adminPass" placeholder="กรอกรหัสผ่านหลังบ้าน">
+        <button onclick="checkAuth()">เข้าสู่ระบบ</button>
+    </div>
 
+    <div class="admin-form" id="dashSection" style="display:none;">
+        <h3>เพิ่มสินค้าใหม่ (Real-time)</h3>
+        <input type="text" id="pName" placeholder="ชื่อสินค้า (เช่น โซฟา Nordic)">
+        <input type="number" id="pPrice" placeholder="ราคา (เฉพาะตัวเลข)">
+        <input type="text" id="pImg" placeholder="ลิงก์รูปภาพสินค้า">
+        <button onclick="uploadProduct()">ลงสินค้าทันที</button>
+        <button onclick="logout()" style="background:#888;">ออกจากระบบ</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <script>
+        // ใส่ Config จาก Firebase ของคุณตรงนี้
+        const firebaseConfig = { /* ใส่ข้อมูลจาก Firebase Console */ };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // 1. ระบบล็อครหัสผ่านง่ายๆ
+        function checkAuth() {
+            const pass = document.getElementById('adminPass').value;
+            if (pass === "123456") { // เปลี่ยนรหัสผ่านตรงนี้
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('dashSection').style.display = 'block';
+            } else { alert("รหัสผ่านไม่ถูกต้อง!"); }
+        }
+
+        // 2. ฟังก์ชันลงสินค้าเข้า Database
+        function uploadProduct() {
+            const name = document.getElementById('pName').value;
+            const price = document.getElementById('pPrice').value;
+            const img = document.getElementById('pImg').value;
+
+            db.ref('products/').push({
+                name: name,
+                price: price,
+                image: img,
+                timestamp: Date.now()
+            }).then(() => {
+                alert("ลงสินค้าเรียบร้อยแล้ว!");
+                location.reload();
+            });
+        }
+    </script>
+</body>
+</html>
