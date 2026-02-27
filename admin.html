@@ -5,9 +5,11 @@
     <title>Admin - Me Sofa Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .admin-form { max-width: 500px; margin: 50px auto; padding: 30px; background: white; border-radius: 10px; box-shadow: var(--shadow); }
-        .admin-form input, .admin-form button { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ddd; }
-        .admin-form button { background: var(--primary); color: white; border: none; cursor: pointer; }
+        .admin-form { max-width: 500px; margin: 50px auto; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .admin-form h3 { margin-bottom: 20px; color: #333; text-align: center; }
+        .admin-form input, .admin-form button, .admin-form select { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box; }
+        .admin-form button { background: #333; color: white; border: none; cursor: pointer; font-weight: bold; }
+        .admin-form button:hover { background: #555; }
     </style>
 </head>
 <body>
@@ -22,42 +24,80 @@
         <input type="text" id="pName" placeholder="ชื่อสินค้า (เช่น โซฟา Nordic)">
         <input type="number" id="pPrice" placeholder="ราคา (เฉพาะตัวเลข)">
         <input type="text" id="pImg" placeholder="ลิงก์รูปภาพสินค้า">
+        
+        <select id="pCategory">
+            <option value="living-room">Living Room (ห้องนั่งเล่น)</option>
+            <option value="bedroom">Bedroom (ห้องนอน)</option>
+            <option value="dining-room">Dining Room (ห้องกินข้าว)</option>
+            <option value="office">Office (ห้องทำงาน)</option>
+        </select>
+
         <button onclick="uploadProduct()">ลงสินค้าทันที</button>
         <button onclick="logout()" style="background:#888;">ออกจากระบบ</button>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+
     <script>
-        // ใส่ Config จาก Firebase ของคุณตรงนี้
-        const firebaseConfig = { /* ใส่ข้อมูลจาก Firebase Console */ };
+        // ตั้งค่า Firebase ด้วยรหัสที่คุณส่งมา
+        const firebaseConfig = {
+            apiKey: "AIzaSyDFdgBMHIPgNGWhwR7gs1arC1lJbVYNr3k",
+            authDomain: "mesofa-admin.firebaseapp.com",
+            databaseURL: "https://mesofa-admin-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "mesofa-admin",
+            storageBucket: "mesofa-admin.firebasestorage.app",
+            messagingSenderId: "758172615910",
+            appId: "1:758172615910:web:920af81b94c1b4b071e727"
+        };
+        
+        // เริ่มต้น Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // 1. ระบบล็อครหัสผ่านง่ายๆ
+        // 1. ฟังก์ชันเช็ครหัสผ่าน
         function checkAuth() {
             const pass = document.getElementById('adminPass').value;
-            if (pass === "123456") { // เปลี่ยนรหัสผ่านตรงนี้
+            if (pass === "123456") { 
                 document.getElementById('loginSection').style.display = 'none';
                 document.getElementById('dashSection').style.display = 'block';
-            } else { alert("รหัสผ่านไม่ถูกต้อง!"); }
+            } else { 
+                alert("รหัสผ่านไม่ถูกต้อง!"); 
+            }
         }
 
-        // 2. ฟังก์ชันลงสินค้าเข้า Database
+        // 2. ฟังก์ชันลงสินค้า
         function uploadProduct() {
             const name = document.getElementById('pName').value;
             const price = document.getElementById('pPrice').value;
             const img = document.getElementById('pImg').value;
+            const category = document.getElementById('pCategory').value;
+
+            if(name === "" || price === "" || img === "") {
+                alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+                return;
+            }
 
             db.ref('products/').push({
                 name: name,
                 price: price,
                 image: img,
+                category: category,
                 timestamp: Date.now()
             }).then(() => {
-                alert("ลงสินค้าเรียบร้อยแล้ว!");
-                location.reload();
+                alert("ลงสินค้าสำเร็จ!");
+                // ล้างค่าข้อมูลหลังลงเสร็จ
+                document.getElementById('pName').value = "";
+                document.getElementById('pPrice').value = "";
+                document.getElementById('pImg').value = "";
+            }).catch((error) => {
+                alert("เกิดข้อผิดพลาด: " + error.message);
             });
+        }
+
+        // 3. ฟังก์ชันออกจากระบบ
+        function logout() {
+            location.reload();
         }
     </script>
 </body>
